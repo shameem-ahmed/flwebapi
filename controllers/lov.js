@@ -1,6 +1,7 @@
 //var models = require('../models/user');
 //var Lov = models.Lov;
 
+
 var Lov = require('../models/user').Lov;
 
 var jwt = require('jwt-simple');

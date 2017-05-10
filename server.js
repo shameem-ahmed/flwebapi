@@ -20,6 +20,7 @@ app.use(cors); //custom middleware for CORS
 //REQUESTS
 //
 //User
+//uesr1q
 app.get('/user/getall', user.getAll);
 app.get('/user/getone/:id', user.getOne);
 
