@@ -27,7 +27,7 @@ var mCompanyOffice = mongoose.model('CompanyOffice', {
     isActive: Boolean
 });
 
-var mCompanyGovtCode = mongoose.model('CompanyOfficePeople', {
+var mCompanyOfficePeople = mongoose.model('CompanyOfficePeople', {
     companyOffice: {type: mongoose.Schema.ObjectId, ref: 'CompanyOffice'},
     person: {type: mongoose.Schema.ObjectId, ref: 'Person'},
     isPrimary: Boolean,
