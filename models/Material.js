@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('User', {
-    email: String,
-    pwd: String
+var mMaterial = mongoose.model('Material', {
+    title: String,
+    isActive: Boolean
 });
+
+module.exports = {
+    Material: mMaterial
+};
+

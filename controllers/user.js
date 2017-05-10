@@ -1,16 +1,16 @@
-var User = require('../models/user');
+var User = require('../models/user').User;
 var jwt = require('jwt-simple');
 var moment = require('moment');
 
 module.exports = {
     register: function (req, res) {
         User.findOne({
-            email: req.body.email
+            name: req.body.name
         }, function (err, existingUser) {
 
             if (existingUser)
                 return res.status(409).send({
-                    message: 'Email is already registered'
+                    message: 'Use name is already registered'
                 });
 
             var user = new User(req.body);
@@ -31,11 +31,11 @@ module.exports = {
 
     login: function (req, res) {
         User.findOne({
-            email: req.body.email
+            name: req.body.name
         }, function (err, user) {
             if (!user)
                 return res.status(401).send({
-                    message: 'Email or Password invalid'
+                    message: 'Name or password invalid'
                 });
 
             if (req.body.pwd == user.pwd) {
@@ -47,9 +47,45 @@ module.exports = {
                 });
             } else {
                 return res.status(401).send({
-                    message: 'Invalid Email or Password'
+                    message: 'Invalid name or password'
                 });
             }
+        });
+    },
+
+    delete: function(req, res) {
+        User.findOne({
+            id: req.body.id
+        }, function(err, user) {
+            if (!user)
+                return res.status(401).send({ message: 'User not found' });
+
+            //delete user
+            User.remove();
+
+            res.status(200).send({
+                message: 'User deleted successfully.'
+            });
+        });
+    },
+
+    getAll: function (req, res) {
+        console.log('user.getAll');
+        User.find(function (err, data) {
+            res.send(data);
+        })
+    },
+
+    getOne: function (req, res) {
+        console.log('user.getOne');
+        var id = req.params.id;
+
+        User.findById(id, function(err, data) {
+            if (!data)
+                return res.status(401).send({ message: 'User not found' });
+
+            res.send(data);
+
         });
     }
 }
