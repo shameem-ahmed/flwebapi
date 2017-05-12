@@ -23,7 +23,6 @@ var mPerson = mongoose.model('Person', {
     dateAnniversary: Date,
     maritalStatus: Number,
     gender: Number,
-    skype: String,
     isActive: Boolean
 });
 //maritalStatus = 0-single, 1-married, 2-widow
