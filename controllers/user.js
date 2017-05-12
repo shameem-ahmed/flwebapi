@@ -3,6 +3,7 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 
 module.exports = {
+
     register: function (req, res) {
         User.findOne({
             name: req.body.name
