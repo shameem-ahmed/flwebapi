@@ -9,7 +9,7 @@ var mLeatherOrder = mongoose.model('LeatherOrder', {
     dateTarget: Date,
     dateDelivery: Date,
     shippingAddress: {type: mongoose.Schema.ObjectId, ref: 'Address'},
-    lovStatus: {type: mongoose.Schema.ObjectId, ref: 'LOV'}
+    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'}
 });
 
 var mLeatherOrderDetail = mongoose.model('LeatherOrderDetail', {

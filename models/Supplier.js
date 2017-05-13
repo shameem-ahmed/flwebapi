@@ -14,7 +14,7 @@ var mSupplier = mongoose.model('Supplier', {
 var mSupplierGovtCode = mongoose.model('SupplierGovtCode', {
     supplier: {type: mongoose.Schema.ObjectId, ref: 'Supplier'},
     value: String,
-    lovType: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     expireDate: Date
 });
 
@@ -32,8 +32,8 @@ var mSupplierOfficePeople = mongoose.model('SupplierOfficePeople', {
     person: {type: mongoose.Schema.ObjectId, ref: 'Person'},
     isPrimary: Boolean,
     isManager: Boolean,
-    lovDesignation: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
-    lovDepartment: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovDesignation: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    LovDepartment: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     isActive: Boolean
 });
 

@@ -31,6 +31,9 @@ module.exports = {
     },
 
     login: function (req, res) {
+        console.log('user.login');
+        console.log(req.body);
+
         User.findOne({
             name: req.body.name
         }, function (err, user) {

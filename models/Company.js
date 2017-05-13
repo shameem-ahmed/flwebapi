@@ -14,7 +14,7 @@ var mCompany = mongoose.model('Company', {
 var mCompanyGovtCode = mongoose.model('CompanyGovtCode', {
     company: {type: mongoose.Schema.ObjectId, ref: 'Company'},
     value: String,
-    lovType: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     expireDate: Date
 });
 
@@ -33,9 +33,9 @@ var mCompanyOfficePeople = mongoose.model('CompanyOfficePeople', {
     isPrimary: Boolean,
     isManager: Boolean,
     isAdmin: Boolean,
-    lovDesignation: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
-    lovDepartment: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
-    lovContactType: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovDesignation: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    LovDepartment: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    LovContactType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     employeeId: String,
     user: {type: mongoose.Schema.ObjectId, ref: 'User'},
     employeeId: String,

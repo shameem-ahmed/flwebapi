@@ -8,8 +8,8 @@ var mPurchaseOrder = mongoose.model('PurchaseOrder', {
     dateTarget: Date,
     dateDelivery: Date,
     shippingAddress: {type: mongoose.Schema.ObjectId, ref: 'Address'},
-    lovStatus: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
-    lovType: {type: mongoose.Schema.ObjectId, ref: 'LOV'}
+    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    LovType: {type: mongoose.Schema.ObjectId, ref: 'Lov'}
 });
 
 var mPurchaseOrderStyle = mongoose.model('PurchaseOrderStyle', {
@@ -28,7 +28,7 @@ var mPurchaseOrderInternalDetails = mongoose.model('PurchaseOrderInternalDetails
     purchaseOrder: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrder'},
     purchaseOrderStyle: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrderStyle'},
     purchaseOrderStyleSize: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrderStyleSize'},
-    lovDetailType: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovDetailType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     notes: String,
     priority: Number
 });
@@ -45,7 +45,8 @@ module.exports = {
     PurchaseOrder: mPurchaseOrder,
     PurchaseOrderStyle: mPurchaseOrderStyle,
     PurchaseOrderStyleSize: mPurchaseOrderStyleSize,
-    PurchaseOrderInternalDetails: mPurchaseOrderInternalDetails
+    PurchaseOrderInternalDetails: mPurchaseOrderInternalDetails,
+    PurchaseOrderMaterial: mPurchaseOrderMaterial
 };
 
 

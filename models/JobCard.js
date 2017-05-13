@@ -9,7 +9,7 @@ var mJobCard = mongoose.model('JobCard', {
     dateStart: Date,
     dateTarget: Date,
     dateEnd: Date,
-    lovStatus: {type: mongoose.Schema.ObjectId, ref: 'LOV'}
+    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'}
 });
 
 var mJobCardCuttingFusing = mongoose.model('JobCardCuttingFusing', {
@@ -17,7 +17,7 @@ var mJobCardCuttingFusing = mongoose.model('JobCardCuttingFusing', {
     dateStart: Date,
     dateTarget: Date,
     dateEnd: Date,
-    lovStatus: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     matcher: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
     cutter: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
     fuser: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
@@ -29,7 +29,7 @@ var mJobCardInspection = mongoose.model('JobCardInspection', {
     dateStart: Date,
     dateTarget: Date,
     dateEnd: Date,
-    lovStatus: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     qcDoneBy: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
     notes: String,
     isOK: Boolean
@@ -40,7 +40,7 @@ var mJobCardLiningCutting = mongoose.model('JobCardLiningCutting', {
     dateStart: Date,
     dateTarget: Date,
     dateEnd: Date,
-    lovStatus: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     cutter: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
     notes: String
 });
@@ -50,7 +50,7 @@ var mJobCardPacking = mongoose.model('JobCardPacking', {
     dateStart: Date,
     dateTarget: Date,
     dateEnd: Date,
-    lovStatus: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     cutter: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
     notes: String,
     isOK: Boolean
@@ -61,7 +61,7 @@ var mJobCardStore = mongoose.model('JobCardStore', {
     dateStart: Date,
     dateTarget: Date,
     dateEnd: Date,
-    lovStatus: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     purchaseOrderMaterial: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrderMaterial'},
     issuedBy: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
     receivedBy: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
@@ -73,7 +73,7 @@ var mJobCardTailoring = mongoose.model('JobCardTailoring', {
     dateStart: Date,
     dateTarget: Date,
     dateEnd: Date,
-    lovStatus: {type: mongoose.Schema.ObjectId, ref: 'LOV'},
+    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     tailor: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
     qcLineDonyBy: {type: mongoose.Schema.ObjectId, ref: 'CompanyOfficePerson'},
     notes: String,
