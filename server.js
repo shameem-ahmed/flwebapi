@@ -24,28 +24,31 @@ app.use(cors); //custom middleware for CORS
 //REQUESTS
 //
 //User
-app.get('/user/getall', cUser.getAll);
-app.get('/user/getone/:id', cUser.getOne);
+app.get('/user/getall', checkAuthenticated, cUser.getAll);
+app.get('/user/getone/:id', checkAuthenticated, cUser.getOne);
+app.get('/user/getlogin', checkAuthenticated, cUser.getLogin);
+app.get('/user/getaccess', checkAuthenticated, cUser.getAccess);
+
 
 app.post('/user/register', cUser.register);
 app.post('/user/login', cUser.login);
-app.post('/user/delete', cUser.delete);
+app.post('/user/delete', checkAuthenticated, cUser.delete);
 
 //Lov
 app.get('/lov/getall', checkAuthenticated, cLov.getAll);
-app.get('/lov/getone/:id', cLov.getOne);
+app.get('/lov/getone/:id', checkAuthenticated, cLov.getOne);
 
-app.post('/lov/add', cLov.add);
-app.post('/lov/delete', cLov.delete);
+app.post('/lov/add', checkAuthenticated, cLov.add);
+app.post('/lov/delete', checkAuthenticated, cLov.delete);
 
 
 //Person
-app.post('/person/add', cPerson.add);
-app.post('/person/update', cPerson.update);
-app.post('/person/delete/:id', cPerson.delete);
+app.post('/person/add', checkAuthenticated, cPerson.add);
+app.post('/person/update', checkAuthenticated, cPerson.update);
+app.post('/person/delete/:id', checkAuthenticated, cPerson.delete);
 
-app.get('/person/getall', cPerson.getAll);
-app.get('/person/getone/:id', cPerson.getOne);
+app.get('/person/getall', checkAuthenticated, cPerson.getAll);
+app.get('/person/getone/:id', checkAuthenticated, cPerson.getOne);
 
 
 

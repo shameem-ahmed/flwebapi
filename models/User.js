@@ -4,11 +4,19 @@ var mongoose = require('mongoose');
 var mUser = mongoose.model('User', {
     name: String,
     pwd: String,
-    lovUserType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     person: {type: mongoose.Schema.ObjectId, ref: 'Person'},
     dateExpiry: Date,
     isActive: Boolean,
-    flag: Number
+    flag: Number,
+    isAdmin: Boolean
+});
+
+//pageCode = DASH, POOR, BUYR ...
+//accessCode = 111111111000 ...
+var mUserAccess = mongoose.model('UserAccess', {
+    user: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    pageCode: String,
+    accessCode: String
 });
 
 //maritalStatus = 0-single, 1-married, 2-widow
@@ -64,6 +72,7 @@ var mLov = mongoose.model('Lov', {
 
 module.exports = {
     User: mUser,
+    UserAccess: mUserAccess,
     Person: mPerson,
     Address: mAddress,
     GeoLoc: mGeoLoc,

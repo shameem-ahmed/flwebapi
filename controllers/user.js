@@ -1,6 +1,8 @@
-var User = require('../models/user').User;
 var jwt = require('jwt-simple');
 var moment = require('moment');
+
+var User = require('../models/user').User;
+var UserAccess = require('../models/user').UserAccess;
 
 module.exports = {
 
@@ -90,6 +92,137 @@ module.exports = {
 
             res.send(data);
 
+        });
+    },
+
+    getLogin: function (req, res) {
+        console.log('user.getLogin');
+        var id = req.user;
+
+        console.log(id);
+
+        User.findById(id).populate({ path: 'person', model: 'Person' }).exec(function(err, data) {
+
+            if (!data)
+                return res.status(401).send({ message: 'User not found' });
+
+            res.send(data);
+
+        });
+    },
+
+    getAccess: function (req, res) {
+        console.log('user.getAccess');
+        var id = req.user;
+
+        console.log(id);
+
+        UserAccess.find({ user: id }, function(err, data) {
+            if (!data)
+                return res.status(401).send({ message: 'UserAccess not found' });
+
+                var aAccess = [];
+
+
+
+                data = data.map(function(item) {
+
+                    var pageTitle = '';
+                    var pageIcon = '';
+                    var pageFile = '';
+                    var pageIndex = 0;
+
+                    if (item.pageCode == "DASH") {
+                        pageTitle = "Dashboard";
+                        pageIcon = "fa fa-desktop";
+                        pageFile = "index.html";
+                        pageIndex = 1;
+
+                    }
+                    else if (item.pageCode == "STYL") {
+                        pageTitle = "Style";
+                        pageIcon = "fa fa-heart";
+                        pageFile = "sty-style.html";
+                        pageIndex = 6;
+
+
+                    }
+                    else if (item.pageCode == "USER") {
+                        pageTitle = "Users";
+                        pageIcon = "fa fa-user";
+                        pageFile = "com-user.html";
+                        pageIndex = 11;
+
+
+                    }
+                    else if (item.pageCode == "POOR") {
+                        pageTitle = "Purchase Orders";
+                        pageIcon = "fa fa-file-text-o";
+                        pageFile = "prd-po.html";
+                        pageIndex = 2;
+
+                    }
+                    else if (item.pageCode == "LTOR") {
+                        pageTitle = "Leather Order";
+                        pageIcon = "fa fa-file-text-o";
+                        pageFile = "lth-lo.html";
+                        pageIndex = 7;
+
+                    }
+                    else if (item.pageCode == "MSDS") {
+                        pageTitle = "MDS";
+                        pageIcon = "fa fa-th-large";
+                        pageFile = "prd-mds.html";
+                        pageIndex = 4;
+
+                    }
+                    else if (item.pageCode == "COMP") {
+                        pageTitle = "Company";
+                        pageIcon = "fa fa-building";
+                        pageFile = "com-com.html";
+                        pageIndex = 9;
+
+                    }
+                    else if (item.pageCode == "JBCD") {
+                        pageTitle = "Job Card";
+                        pageIcon = "fa fa-check-square-o";
+                        pageFile = "jc-jc.html";
+                        pageIndex = 5;
+
+                    }
+                    else if (item.pageCode == "LOVL") {
+                        pageTitle = "LOV";
+                        pageIcon = "fa fa-caret-square-o-down";
+                        pageFile = "com-lov.html";
+                        pageIndex = 10;
+
+                    }
+                    else if (item.pageCode == "BUYR") {
+                        pageTitle = "Buyer";
+                        pageIcon = "fa fa-user";
+                        pageFile = "prd-cust.html";
+                        pageIndex = 3;
+
+                    }
+                    else if (item.pageCode == "SUPP") {
+                        pageTitle = "Supplier";
+                        pageIcon = "fa fa-user";
+                        pageFile = "lth-supp.html";
+                        pageIndex = 9;
+
+                    }
+
+                    var iAccess = { pageCode: item.pageCode, pageTitle: pageTitle, pageIcon: pageIcon, pageFile: pageFile, pageIndex: pageIndex, access: item.accessCode };
+
+                    aAccess.push(iAccess);
+
+                    //console.log(iAccess);
+
+                    return item;
+                });
+
+
+            res.send(aAccess);
         });
     }
 }
