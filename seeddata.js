@@ -4,9 +4,9 @@ module.exports.seedData = function() {
 
     //SEED DATA
     var mLov = mongoose.model("Lov");
-    var mPerson = mongoose.model("Person");
     var mUser = mongoose.model("User");
     var mUserAccess = mongoose.model("UserAccess");
+    var mPerson = mongoose.model("Person");
 
     mUser.find(function(err, data) {
         if (data.length === 0) {
@@ -156,7 +156,26 @@ module.exports.seedData = function() {
             dLov = new mLov({ title:"License", type:10, flag:0 }).save();
             dLov = new mLov({ title:"Aadhar Card", type:10, flag:0 }).save();
             dLov = new mLov({ title:"Passport", type:10, flag:0 }).save();
-            dLov = new mLov({ title:"PAN", type:10, flag:0 }).save(function(err, data){
+            dLov = new mLov({ title:"PAN", type:10, flag:0 }).save(function(err, data) {
+
+                console.log("Seed Person data: started...")
+
+                var dPerson = new mPerson({ name: "Shameem Ahmed A", email: "shameem.net1@gmail.com", phone: "9176330322", facebook: "shameem666", skype: "shameem.net",
+                                           twitter: "~shameem", lovGovtNo: data._id, govtNo: "1234567890", photo: "shameem.jpg", dateBirth: "25-Dec-1975",
+                                           dateAnniversary: "22-Dec-2005", maritalStatus: 1, gender: 0, isActive: true, flag: 0 }).save();
+
+                dPerson = new mPerson({ name: "Mahesh Kumar", email: "mahesh.kumar@gmail.com", phone: "9176330322", facebook: "shameem666", skype: "shameem.net",
+                                           twitter: "~shameem", lovGovtNo: data._id, govtNo: "1234567890", photo: "shameem.jpg", dateBirth: "25-Dec-1975",
+                                           dateAnniversary: "22-Dec-2005", maritalStatus: 1, gender: 0, isActive: true, flag: 0 }).save();
+
+                dPerson = new mPerson({ name: "Saravanan", email: "saravanan.ag@gmail.com", phone: "9176330322", facebook: "shameem666", skype: "shameem.net",
+                                           twitter: "~shameem", lovGovtNo: data._id, govtNo: "1234567890", photo: "shameem.jpg", dateBirth: "25-Dec-1975",
+                                           dateAnniversary: "22-Dec-2005", maritalStatus: 1, gender: 0, isActive: true, flag: 0 }).save(function(err, data) {
+
+                    console.log("Seed Person data: completed...")
+
+                });
+
                 console.log("Seed LOV data: completed...")
             });
         }
@@ -172,7 +191,7 @@ module.exports.seedData = function() {
             var dLoc1 = new mLoc({ parent:null, title:"India", type:0, geoData:'', flag:0 }).save(function(err, data) {
                 var dLoc11 = new mLoc({ parent:data._id, title:"Tamilnadu", type:1, geoData:'', flag:0 }).save(function(err, data) {
                     var dLoc111 = new mLoc({ parent:data._id, title:"Chennai", type:2, geoData:'', flag:0 }).save(function(err, data) {
-                        var dLoc1111 = new mLoc({ parent:data._id, title:"Pattalam", type:3, geoData:'', flag:0 }).save(function(err, data) {
+                        var dLoc1111 = new mLoc({ parent:data._id, title:"T Nagar", type:3, geoData:'', flag:0 }).save(function(err, data) {
                             console.log("Seed GeoLoc data: completed...")
                         });
                     });
