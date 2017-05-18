@@ -83,7 +83,6 @@ module.exports = {
                 return res.status(401).send({ message: 'Users not found' });
 
             res.send(data);
-
         })
     },
 
@@ -91,12 +90,11 @@ module.exports = {
         console.log('user.getOne');
         var id = req.params.id;
 
-        User.findById(id, function(err, data) {
+        User.findById(id).populate({ path: 'person', model: 'Person' }).exec(function(err, data) {
             if (!data)
                 return res.status(401).send({ message: 'User not found' });
 
             res.send(data);
-
         });
     },
 
@@ -131,17 +129,17 @@ module.exports = {
 
             if (user.isAdmin) {
 
-                aAccess.push({ pageCode: "DASH", pageTitle: "Dashboard", pageIcon: "fa fa-desktop", pageFile: "index.html", pageIndex: 1, access: "111111111" });
-                aAccess.push({ pageCode: "POOR", pageTitle: "Purchase Orders", pageIcon: "fa fa-file-text-o", pageFile: "prd-po.html", pageIndex: 2, access: "111111111" });
-                aAccess.push({ pageCode: "BUYR", pageTitle: "Buyer", pageIcon: "fa fa-user", pageFile: "prd-cust.html", pageIndex: 3, access: "111111111" });
-                aAccess.push({ pageCode: "MSDS", pageTitle: "MDS", pageIcon: "fa fa-th-large", pageFile: "prd-mds.html", pageIndex: 4, access: "111111111" });
-                aAccess.push({ pageCode: "JBCD", pageTitle: "Job Card", pageIcon: "fa fa-check-square-o", pageFile: "jc-jc.html", pageIndex: 5, access: "111111111" });
-                aAccess.push({ pageCode: "STYL", pageTitle: "Style", pageIcon: "fa fa-heart", pageFile: "sty-style.html", pageIndex: 6, access: "111111111" });
-                aAccess.push({ pageCode: "LTOR", pageTitle: "Leather Order", pageIcon: "fa fa-file-text-o", pageFile: "lth-lo.html", pageIndex: 7, access: "111111111" });
-                aAccess.push({ pageCode: "COMP", pageTitle: "Company", pageIcon: "fa fa-building", pageFile: "com-com.html", pageIndex: 8, access: "111111111" });
-                aAccess.push({ pageCode: "SUPP", pageTitle: "Supplier", pageIcon: "fa fa-user", pageFile: "lth-supp.html", pageIndex: 9, access: "111111111" });
-                aAccess.push({ pageCode: "LOVL", pageTitle: "LOV", pageIcon: "fa fa-caret-square-o-down", pageFile: "com-lov.html", pageIndex: 10, access: "111111111" });
-                aAccess.push({ pageCode: "USER", pageTitle: "Users", pageIcon: "fa fa-user", pageFile: "com-user.html", pageIndex: 11, access: "111111111" });
+                aAccess.push({ pageCode: "DASH", pageId: "liPageDashboard", pageTitle: "Dashboard", pageIcon: "fa fa-desktop", pageFile: "/home", pageIndex: 1, access: "111111111" });
+                aAccess.push({ pageCode: "POOR", pageId: "liPagePO", pageTitle: "Purchase Orders", pageIcon: "fa fa-file-text-o", pageFile: "/home/po", pageIndex: 2, access: "111111111" });
+                aAccess.push({ pageCode: "BUYR", pageId: "liPageBuyer", pageTitle: "Buyer", pageIcon: "fa fa-user", pageFile: "/home/buyer", pageIndex: 3, access: "111111111" });
+                aAccess.push({ pageCode: "MSDS", pageId: "liPageMDS", pageTitle: "MDS", pageIcon: "fa fa-th-large", pageFile: "/home/mds", pageIndex: 4, access: "111111111" });
+                aAccess.push({ pageCode: "JBCD", pageId: "liPageJC", pageTitle: "Job Card", pageIcon: "fa fa-check-square-o", pageFile: "/home/jc", pageIndex: 5, access: "111111111" });
+                aAccess.push({ pageCode: "STYL", pageId: "liPageStyle", pageTitle: "Style", pageIcon: "fa fa-heart", pageFile: "/home/style", pageIndex: 6, access: "111111111" });
+                aAccess.push({ pageCode: "LTOR", pageId: "liPageLO", pageTitle: "Leather Order", pageIcon: "fa fa-file-text-o", pageFile: "/home/lo", pageIndex: 7, access: "111111111" });
+                aAccess.push({ pageCode: "COMP", pageId: "liPageCompany", pageTitle: "Company", pageIcon: "fa fa-building", pageFile: "/home/company", pageIndex: 8, access: "111111111" });
+                aAccess.push({ pageCode: "SUPP", pageId: "liPageSupplier", pageTitle: "Supplier", pageIcon: "fa fa-user", pageFile: "/home/supplier", pageIndex: 9, access: "111111111" });
+                aAccess.push({ pageCode: "LOVL", pageId: "liPageLOV", pageTitle: "LOV", pageIcon: "fa fa-caret-square-o-down", pageFile: "/home/lov", pageIndex: 10, access: "111111111" });
+                aAccess.push({ pageCode: "USER", pageId: "liPageUser", pageTitle: "Users", pageIcon: "fa fa-user", pageFile: "/home/user", pageIndex: 11, access: "111111111" });
 
                 res.send(aAccess);
 
@@ -160,85 +158,96 @@ module.exports = {
 
                             if (item.pageCode == "DASH") {
                                 pageTitle = "Dashboard";
+                                pageId = "liPageDashboard";
                                 pageIcon = "fa fa-desktop";
-                                pageFile = "index.html";
+                                pageFile = "/home";
                                 pageIndex = 1;
 
                             }
                             else if (item.pageCode == "STYL") {
                                 pageTitle = "Style";
+                                pageId = "liPageStyle";
                                 pageIcon = "fa fa-heart";
-                                pageFile = "sty-style.html";
+                                pageFile = "/home/style";
                                 pageIndex = 6;
 
 
                             }
                             else if (item.pageCode == "USER") {
                                 pageTitle = "Users";
+                                pageId = "liPageUser";
                                 pageIcon = "fa fa-user";
-                                pageFile = "com-user.html";
+                                pageFile = "/home/user";
                                 pageIndex = 11;
 
 
                             }
                             else if (item.pageCode == "POOR") {
                                 pageTitle = "Purchase Orders";
+                                pageId = "liPagePO";
                                 pageIcon = "fa fa-file-text-o";
-                                pageFile = "prd-po.html";
+                                pageFile = "/home/po";
                                 pageIndex = 2;
 
                             }
                             else if (item.pageCode == "LTOR") {
                                 pageTitle = "Leather Order";
+                                pageId = "liPageLO";
                                 pageIcon = "fa fa-file-text-o";
-                                pageFile = "lth-lo.html";
+                                pageFile = "/home/lo";
                                 pageIndex = 7;
 
                             }
                             else if (item.pageCode == "MSDS") {
                                 pageTitle = "MDS";
+                                pageID = "liPageMDS";
                                 pageIcon = "fa fa-th-large";
-                                pageFile = "prd-mds.html";
+                                pageFile = "/home/mds";
                                 pageIndex = 4;
 
                             }
                             else if (item.pageCode == "COMP") {
                                 pageTitle = "Company";
+                                pageId = "liPageCompany";
                                 pageIcon = "fa fa-building";
-                                pageFile = "com-com.html";
+                                pageFile = "/home/company";
                                 pageIndex = 9;
 
                             }
                             else if (item.pageCode == "JBCD") {
                                 pageTitle = "Job Card";
+                                pageID = "liPageJC";
                                 pageIcon = "fa fa-check-square-o";
-                                pageFile = "jc-jc.html";
+                                pageFile = "/home/jc";
                                 pageIndex = 5;
 
                             }
                             else if (item.pageCode == "LOVL") {
                                 pageTitle = "LOV";
+                                pageId = "liPageLOV";
                                 pageIcon = "fa fa-caret-square-o-down";
-                                pageFile = "com-lov.html";
+                                pageFile = "/home/loc";
                                 pageIndex = 10;
 
                             }
                             else if (item.pageCode == "BUYR") {
                                 pageTitle = "Buyer";
+                                pageId = "liPageBuyer";
                                 pageIcon = "fa fa-user";
-                                pageFile = "prd-cust.html";
+                                pageFile = "/home/customer";
                                 pageIndex = 3;
 
                             }
                             else if (item.pageCode == "SUPP") {
                                 pageTitle = "Supplier";
+                                pageId = "liPageSupplier";
                                 pageIcon = "fa fa-user";
-                                pageFile = "lth-supp.html";
+                                pageFile = "/home/supplier";
                                 pageIndex = 9;
 
                             }
 
-                            var iAccess = { pageCode: item.pageCode, pageTitle: pageTitle, pageIcon: pageIcon, pageFile: pageFile, pageIndex: pageIndex, access: item.accessCode };
+                            var iAccess = { pageCode: item.pageCode, pageId: item.pageId, pageTitle: pageTitle, pageIcon: pageIcon, pageFile: pageFile, pageIndex: pageIndex, access: item.accessCode };
 
                             aAccess.push(iAccess);
 
