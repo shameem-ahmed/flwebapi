@@ -11,8 +11,6 @@ var mCompany = mongoose.model('Company', {
     isActive: Boolean
 });
 
-//test git
-
 var mCompanyGovtCode = mongoose.model('CompanyGovtCode', {
     company: {type: mongoose.Schema.ObjectId, ref: 'Company'},
     value: String,
