@@ -59,6 +59,24 @@ module.exports = {
         });
     },
 
+    add: function (req, res) {
+        console.log('user.add');
+
+        var user = new User(req.body);
+
+        user.save(function (err, data) {
+            if (err) {
+                res.status(500).send({
+                    message: err.message
+                });
+            }
+
+            res.status(200).send({
+                user: data
+            });
+        });
+    },
+
     delete: function(req, res) {
         User.findOne({
             id: req.body.id

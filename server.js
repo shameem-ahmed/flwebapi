@@ -32,6 +32,7 @@ app.get('/user/getaccess', checkAuthenticated, cUser.getAccess);
 
 app.post('/user/register', cUser.register);
 app.post('/user/login', cUser.login);
+app.post('/user/add', checkAuthenticated, cUser.add);
 app.post('/user/delete', checkAuthenticated, cUser.delete);
 
 //UserAccess
