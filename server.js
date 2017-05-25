@@ -8,8 +8,10 @@ var app = express();
 var cUser = require('./controllers/user');
 var cAccess = require('./controllers/access');
 var cLov = require('./controllers/lov');
+var cGloc = require('./controllers/gloc');
+
 var cPerson = require('./controllers/person');
-//var message = require('./controllers/message');
+var cAddress = require('./controllers/address');
 
 var seed = require('./seeddata');
 
@@ -46,9 +48,16 @@ app.post('/access/updatemulti', checkAuthenticated, cAccess.updateMulti);
 
 app.post('/access/delete/:id', checkAuthenticated, cAccess.delete);
 
+//GeoLoc
+app.get('/gloc/getcountries', checkAuthenticated, cGloc.getCountries);
+app.get('/gloc/getstates/:parent', checkAuthenticated, cGloc.getStates);
+app.get('/gloc/getcities/:parent', checkAuthenticated, cGloc.getCities);
+app.get('/gloc/getareas/:parent', checkAuthenticated, cGloc.getAreas);
+
 //Lov
 app.get('/lov/getall', checkAuthenticated, cLov.getAll);
 app.get('/lov/getone/:id', checkAuthenticated, cLov.getOne);
+app.get('/lov/getlov/:type', checkAuthenticated, cLov.getLov);
 
 app.post('/lov/add', checkAuthenticated, cLov.add);
 app.post('/lov/delete', checkAuthenticated, cLov.delete);
@@ -60,6 +69,14 @@ app.post('/person/delete/:id', checkAuthenticated, cPerson.delete);
 
 app.get('/person/getall', checkAuthenticated, cPerson.getAll);
 app.get('/person/getone/:id', checkAuthenticated, cPerson.getOne);
+
+//Address
+app.post('/address/add', checkAuthenticated, cAddress.add);
+app.post('/address/update', checkAuthenticated, cAddress.update);
+app.post('/address/delete/:id', checkAuthenticated, cAddress.delete);
+
+app.get('/address/getall', checkAuthenticated, cAddress.getAll);
+app.get('/address/getone/:id', checkAuthenticated, cAddress.getOne);
 
 //Connection
 mongoose.connect("mongodb://localhost:27017/fldb", function(err, db){

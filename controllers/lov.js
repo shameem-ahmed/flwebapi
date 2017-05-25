@@ -49,6 +49,16 @@ module.exports = {
         })
     },
 
+    //type = 0-Desig, 1-Dept, 2-OfficeType, 3-GovtCode, 4-UserType, 5-OrderType, 6-OrderStatus, 7-POInternalDetailType, 8-JCStatus, 9-ContactType, 10-PersonGovtNo
+    getLov: function (req, res) {
+        console.log('Lov.getLov');
+        var type = req.params.type;
+
+        Lov.find({ type: type }, function (err, data) {
+            res.send(data);
+        })
+    },
+
     getOne: function (req, res) {
         console.log('Lov.getOne');
 

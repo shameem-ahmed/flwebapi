@@ -28,6 +28,7 @@ var mPerson = mongoose.model('Person', {
     facebook: String,
     skype: String,
     twitter: String,
+    address: {type: mongoose.Schema.ObjectId, ref: 'Address'},
     lovGovtNo: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     govtNo: String,
     photo: String,
@@ -45,13 +46,6 @@ var mAddress = mongoose.model('Address', {
     geoLoc: {type: mongoose.Schema.ObjectId, ref: 'GeoLoc'},
     isActive: Boolean,
     flag: Number
-});
-
-var mPersonAddress = mongoose.model('PersonAddress', {
-    person: {type: mongoose.Schema.ObjectId, ref: 'Person'},
-    address: {type: mongoose.Schema.ObjectId, ref: 'Address'},
-    isPrimary: Boolean,
-    isActive: Boolean
 });
 
 //type = 0-country, 1-state, 2-city, 3-area
@@ -76,6 +70,5 @@ module.exports = {
     Person: mPerson,
     Address: mAddress,
     GeoLoc: mGeoLoc,
-    PersonAddress: mPersonAddress,
     Lov: mLov
 };
