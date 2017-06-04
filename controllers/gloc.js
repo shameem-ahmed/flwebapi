@@ -2,6 +2,20 @@ var Gloc = require('../models/user').GeoLoc;
 
 module.exports = {
 
+    getOne: function (req, res) {
+        console.log('gloc.getOne');
+
+        var id = req.params.id;
+
+        Gloc.findById(id, function(err, data) {
+            if (!data)
+                return res.status(401).send({ message: 'Gloc not found' });
+
+            res.send(data);
+
+        });
+    },
+
     getCountries: function (req, res) {
         console.log('Gloc.getCountries');
 

@@ -161,15 +161,15 @@ module.exports.seedData = function() {
                 console.log("Seed Person data: started...")
 
                 var dPerson = new mPerson({ name: "Shameem Ahmed A", email: "shameem.net1@gmail.com", phone: "9176330322", facebook: "shameem666", skype: "shameem.net",
-                                           twitter: "~shameem", lovGovtNo: data._id, govtNo: "1234567890", photo: "shameem.jpg", dateBirth: "25-Dec-1975",
+                                           twitter: "~shameem", lovGovtNo: data._id, govtNo: "1234567890", photo: "shameem.jpg", dateBirth: "25-Dec-1975", address: null,
                                            dateAnniversary: "22-Dec-2005", maritalStatus: 1, gender: 0, isActive: true, flag: 0 }).save();
 
                 dPerson = new mPerson({ name: "Mahesh Kumar", email: "mahesh.kumar@gmail.com", phone: "9176330322", facebook: "shameem666", skype: "shameem.net",
-                                           twitter: "~shameem", lovGovtNo: data._id, govtNo: "1234567890", photo: "shameem.jpg", dateBirth: "25-Dec-1975",
+                                           twitter: "~shameem", lovGovtNo: data._id, govtNo: "1234567890", photo: "shameem.jpg", dateBirth: "25-Dec-1975", address: null,
                                            dateAnniversary: "22-Dec-2005", maritalStatus: 1, gender: 0, isActive: true, flag: 0 }).save();
 
                 dPerson = new mPerson({ name: "Saravanan", email: "saravanan.ag@gmail.com", phone: "9176330322", facebook: "shameem666", skype: "shameem.net",
-                                           twitter: "~shameem", lovGovtNo: data._id, govtNo: "1234567890", photo: "shameem.jpg", dateBirth: "25-Dec-1975",
+                                           twitter: "~shameem", lovGovtNo: data._id, govtNo: "1234567890", photo: "shameem.jpg", dateBirth: "25-Dec-1975", address: null,
                                            dateAnniversary: "22-Dec-2005", maritalStatus: 1, gender: 0, isActive: true, flag: 0 }).save(function(err, data) {
 
                     console.log("Seed Person data: completed...")

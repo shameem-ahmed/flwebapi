@@ -139,8 +139,8 @@ module.exports = {
                     iAccess.pageTitle = "Purchase Order";
                     iAccess.pageIndex = 2;
                 }
-                else if (item.pageCode == "BUYR") {
-                    iAccess.pageTitle = "Buyer";
+                else if (item.pageCode == "CUST") {
+                    iAccess.pageTitle = "Customer";
                     iAccess.pageIndex = 3;
                 }
                 else if (item.pageCode == "MSDS") {

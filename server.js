@@ -9,9 +9,11 @@ var cUser = require('./controllers/user');
 var cAccess = require('./controllers/access');
 var cLov = require('./controllers/lov');
 var cGloc = require('./controllers/gloc');
-
 var cPerson = require('./controllers/person');
 var cAddress = require('./controllers/address');
+var cSupplier = require('./controllers/supplier');
+var cCompany = require('./controllers/company');
+var cCustomer = require('./controllers/customer');
 
 var seed = require('./seeddata');
 
@@ -31,7 +33,6 @@ app.get('/user/getall', checkAuthenticated, cUser.getAll);
 app.get('/user/getone/:id', checkAuthenticated, cUser.getOne);
 app.get('/user/getlogin', checkAuthenticated, cUser.getLogin);
 app.get('/user/getaccess', checkAuthenticated, cUser.getAccess);
-
 app.post('/user/register', cUser.register);
 app.post('/user/login', cUser.login);
 app.post('/user/add', checkAuthenticated, cUser.add);
@@ -41,14 +42,13 @@ app.post('/user/delete', checkAuthenticated, cUser.delete);
 app.get('/access/getall', checkAuthenticated, cAccess.getAll);
 app.get('/access/getaccess/:id', checkAuthenticated, cAccess.getAccess);
 app.get('/access/getone/:id', checkAuthenticated, cAccess.getOne);
-
 app.post('/access/add', checkAuthenticated, cAccess.add);
 app.post('/access/update', checkAuthenticated, cAccess.update);
 app.post('/access/updatemulti', checkAuthenticated, cAccess.updateMulti);
-
 app.post('/access/delete/:id', checkAuthenticated, cAccess.delete);
 
 //GeoLoc
+app.get('/gloc/getone/:id', checkAuthenticated, cGloc.getOne);
 app.get('/gloc/getcountries', checkAuthenticated, cGloc.getCountries);
 app.get('/gloc/getstates/:parent', checkAuthenticated, cGloc.getStates);
 app.get('/gloc/getcities/:parent', checkAuthenticated, cGloc.getCities);
@@ -58,7 +58,6 @@ app.get('/gloc/getareas/:parent', checkAuthenticated, cGloc.getAreas);
 app.get('/lov/getall', checkAuthenticated, cLov.getAll);
 app.get('/lov/getone/:id', checkAuthenticated, cLov.getOne);
 app.get('/lov/getlov/:type', checkAuthenticated, cLov.getLov);
-
 app.post('/lov/add', checkAuthenticated, cLov.add);
 app.post('/lov/delete', checkAuthenticated, cLov.delete);
 
@@ -66,7 +65,6 @@ app.post('/lov/delete', checkAuthenticated, cLov.delete);
 app.post('/person/add', checkAuthenticated, cPerson.add);
 app.post('/person/update', checkAuthenticated, cPerson.update);
 app.post('/person/delete/:id', checkAuthenticated, cPerson.delete);
-
 app.get('/person/getall', checkAuthenticated, cPerson.getAll);
 app.get('/person/getone/:id', checkAuthenticated, cPerson.getOne);
 
@@ -74,9 +72,48 @@ app.get('/person/getone/:id', checkAuthenticated, cPerson.getOne);
 app.post('/address/add', checkAuthenticated, cAddress.add);
 app.post('/address/update', checkAuthenticated, cAddress.update);
 app.post('/address/delete/:id', checkAuthenticated, cAddress.delete);
-
 app.get('/address/getall', checkAuthenticated, cAddress.getAll);
 app.get('/address/getone/:id', checkAuthenticated, cAddress.getOne);
+
+//Supplier
+app.post('/supplier/add', checkAuthenticated, cSupplier.add);
+app.post('/supplier/update', checkAuthenticated, cSupplier.update);
+app.post('/supplier/delete/:id', checkAuthenticated, cSupplier.delete);
+app.get('/supplier/getall', checkAuthenticated, cSupplier.getAll);
+app.get('/supplier/getone/:id', checkAuthenticated, cSupplier.getOne);
+
+app.post('/supplier/code/add', checkAuthenticated, cSupplier.addCode);
+app.post('/supplier/code/update', checkAuthenticated, cSupplier.updateCode);
+app.post('/supplier/code/delete/:id', checkAuthenticated, cSupplier.deleteCode);
+app.get('/supplier/code/getall/:suppId', checkAuthenticated, cSupplier.getAllCode);
+
+app.post('/supplier/office/add', checkAuthenticated, cSupplier.addOffice);
+app.post('/supplier/office/update', checkAuthenticated, cSupplier.updateOffice);
+app.post('/supplier/office/delete/:id', checkAuthenticated, cSupplier.deleteOffice);
+app.get('/supplier/office/getall/:suppId', checkAuthenticated, cSupplier.getAllOffice);
+
+app.post('/supplier/person/add', checkAuthenticated, cSupplier.addPerson);
+app.post('/supplier/person/update', checkAuthenticated, cSupplier.updatePerson);
+app.post('/supplier/person/delete/:id', checkAuthenticated, cSupplier.deletePerson);
+app.get('/supplier/person/getall/:offId', checkAuthenticated, cSupplier.getAllPerson);
+
+//Customer
+app.post('/customer/add', checkAuthenticated, cCustomer.add);
+app.post('/customer/update', checkAuthenticated, cCustomer.update);
+app.post('/customer/delete/:id', checkAuthenticated, cCustomer.delete);
+
+app.get('/customer/getall', checkAuthenticated, cCustomer.getAll);
+app.get('/customer/getone/:id', checkAuthenticated, cCustomer.getOne);
+
+//Company
+app.post('/company/add', checkAuthenticated, cCompany.add);
+app.post('/company/update', checkAuthenticated, cCompany.update);
+app.post('/company/delete/:id', checkAuthenticated, cCompany.delete);
+
+app.get('/company/getall', checkAuthenticated, cCompany.getAll);
+app.get('/company/getone/:id', checkAuthenticated, cCompany.getOne);
+
+
 
 //Connection
 mongoose.connect("mongodb://localhost:27017/fldb", function(err, db){

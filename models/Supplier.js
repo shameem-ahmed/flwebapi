@@ -8,6 +8,7 @@ var mSupplier = mongoose.model('Supplier', {
     phone: String,
     fax: String,
     logo: String,
+    flag: Number,
     isActive: Boolean
 });
 
@@ -15,15 +16,18 @@ var mSupplierGovtCode = mongoose.model('SupplierGovtCode', {
     supplier: {type: mongoose.Schema.ObjectId, ref: 'Supplier'},
     value: String,
     LovType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    flag: Number,
     expireDate: Date
 });
 
 var mSupplierOffice = mongoose.model('SupplierOffice', {
     supplier: {type: mongoose.Schema.ObjectId, ref: 'Supplier'},
+    title: String,
     address: {type: mongoose.Schema.ObjectId, ref: 'Address'},
     email: String,
     phone: String,
     fax: String,
+    flag: Number,
     isActive: Boolean
 });
 
@@ -34,12 +38,13 @@ var mSupplierOfficePeople = mongoose.model('SupplierOfficePeople', {
     isManager: Boolean,
     LovDesignation: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     LovDepartment: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    flag: Number,
     isActive: Boolean
 });
 
 module.exports = {
     Supplier: mSupplier,
-    SupplierGovtCode: mSupplierGovtCodev,
+    SupplierGovtCode: mSupplierGovtCode,
     SupplierOffice: mSupplierOffice,
     SupplierOfficePeople: mSupplierOfficePeople
 };

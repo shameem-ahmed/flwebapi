@@ -95,24 +95,41 @@ module.exports = {
 
     getAll: function (req, res) {
         console.log('user.getAll');
-        User.find().populate({ path: 'person', model: 'Person' }).exec(function (err, data) {
+
+        User.find().populate({ path: 'person', model: 'Person' }).populate({ path: 'address', model: 'Address' }).exec(function (err, data) {
 
             if (!data)
                 return res.status(401).send({ message: 'Users not found' });
 
             res.send(data);
-        })
+        });
     },
 
     getOne: function (req, res) {
         console.log('user.getOne');
         var id = req.params.id;
 
-        User.findById(id).populate({ path: 'person', model: 'Person' }).exec(function(err, data) {
+        User.findById(id, function(err, data) {
+
             if (!data)
                 return res.status(401).send({ message: 'User not found' });
 
-            res.send(data);
+            User.populate(data, { path: 'person', model: 'Person' }, function(err, data2) {
+
+                if (!data2)
+                    return res.status(401).send({ message: 'User-Person not found' });
+
+                User.populate(data2, { path: 'person.address', model: 'Address' }, function(err, data3) {
+
+                    if (!data3)
+                        return res.status(401).send({ message: 'User-Person-Address not found' });
+
+                    console.log(data3);
+
+                    res.send(data3);
+
+                });
+            });
         });
     },
 
@@ -149,7 +166,7 @@ module.exports = {
 
                 aAccess.push({ pageCode: "DASH", pageId: "liPageDashboard", pageTitle: "Dashboard", pageIcon: "fa fa-desktop", pageFile: "/home", pageIndex: 1, access: "111111111" });
                 aAccess.push({ pageCode: "POOR", pageId: "liPagePO", pageTitle: "Purchase Orders", pageIcon: "fa fa-file-text-o", pageFile: "/home/po", pageIndex: 2, access: "111111111" });
-                aAccess.push({ pageCode: "BUYR", pageId: "liPageBuyer", pageTitle: "Buyer", pageIcon: "fa fa-user", pageFile: "/home/buyer", pageIndex: 3, access: "111111111" });
+                aAccess.push({ pageCode: "CUST", pageId: "liPageCustomer", pageTitle: "Customer", pageIcon: "fa fa-user", pageFile: "/home/customer", pageIndex: 3, access: "111111111" });
                 aAccess.push({ pageCode: "MSDS", pageId: "liPageMDS", pageTitle: "MDS", pageIcon: "fa fa-th-large", pageFile: "/home/mds", pageIndex: 4, access: "111111111" });
                 aAccess.push({ pageCode: "JBCD", pageId: "liPageJC", pageTitle: "Job Card", pageIcon: "fa fa-check-square-o", pageFile: "/home/jc", pageIndex: 5, access: "111111111" });
                 aAccess.push({ pageCode: "STYL", pageId: "liPageStyle", pageTitle: "Style", pageIcon: "fa fa-heart", pageFile: "/home/style", pageIndex: 6, access: "111111111" });
@@ -248,7 +265,7 @@ module.exports = {
                                 pageIndex = 10;
 
                             }
-                            else if (item.pageCode == "BUYR") {
+                            else if (item.pageCode == "CUST") {
                                 pageTitle = "Buyer";
                                 pageId = "liPageBuyer";
                                 pageIcon = "fa fa-user";
