@@ -236,7 +236,7 @@ module.exports = {
 
         Supplier.find(function (err, data) {
             res.send(data);
-        })
+        });
     },
 
     getOne: function (req, res) {
@@ -258,9 +258,9 @@ module.exports = {
 
         var suppId = req.params.suppId;
 
-        SupplierGovtCode.find({ supplier: suppId }, function (err, data) {
+        SupplierGovtCode.find({ supplier: suppId }).populate({ path: 'LovType', model: 'Lov' }).exec(function (err, data) {
             res.send(data);
-        })
+        });
     },
 
     getAllOffice: function (req, res) {
