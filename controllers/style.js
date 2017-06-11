@@ -168,9 +168,9 @@ module.exports = {
     addSize: function (req, res) {
         console.log('style.addSize');
 
-        var size = new Color(req.body);
+        var size = new Size(req.body);
 
-        Size.save(function (err, data) {
+        size.save(function (err, data) {
             if (err) {
                 res.status(500).send({
                     message: err.message
