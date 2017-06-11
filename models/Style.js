@@ -1,19 +1,34 @@
 var mongoose = require('mongoose');
 
-var mStyle = mongoose.model('Style', {
+var mMaterial = mongoose.model('Material', {
     title: String,
-    photo: String,
+    flag: Number,
     isActive: Boolean
 });
 
-var mStyleLeather = mongoose.model('StyleLeather', {
-    style: {type: mongoose.Schema.ObjectId, ref: 'Style'},
-    leather: {type: mongoose.Schema.ObjectId, ref: 'Leather'}
+var mLeather = mongoose.model('Leather', {
+    title: String,
+    flag: Number,
+    isActive: Boolean
 });
 
-var mStyleLeatherColor = mongoose.model('StyleLeatherColor', {
-    styleLeather: {type: mongoose.Schema.ObjectId, ref: 'StyleLeather'},
-    color: {type: mongoose.Schema.ObjectId, ref: 'Color'}
+var mColor = mongoose.model('Color', {
+    title: String,
+    flag: Number,
+    isActive: Boolean
+});
+
+var mSize = mongoose.model('Size', {
+    title: String,
+    flag: Number,
+    isActive: Boolean
+});
+
+var mStyle = mongoose.model('Style', {
+    title: String,
+    photo: String,
+    flag: Number,
+    isActive: Boolean
 });
 
 var mStyleSize = mongoose.model('StyleSize', {
@@ -26,12 +41,26 @@ var mStyleMaterial = mongoose.model('StyleMaterial', {
     material: {type: mongoose.Schema.ObjectId, ref: 'Material'}
 });
 
+var mStyleLeather = mongoose.model('StyleLeather', {
+    style: {type: mongoose.Schema.ObjectId, ref: 'Style'},
+    leather: {type: mongoose.Schema.ObjectId, ref: 'Leather'}
+});
+
+var mStyleLeatherColor = mongoose.model('StyleLeatherColor', {
+    styleLeather: {type: mongoose.Schema.ObjectId, ref: 'StyleLeather'},
+    color: {type: mongoose.Schema.ObjectId, ref: 'Color'}
+});
+
 module.exports = {
+    Material: mMaterial,
+    Leather: mLeather,
+    Color: mColor,
+    Size: mSize,
     Style: mStyle,
-    StyleLeather: mStyleLeather,
-    StyleLeatherColor: mStyleLeatherColor,
     StyleSize: mStyleSize,
-    StyleMaterial: mStyleMaterial
+    StyleMaterial: mStyleMaterial,
+    StyleLeather: mStyleLeather,
+    StyleLeatherColor: mStyleLeatherColor
 };
 
 
