@@ -46,8 +46,8 @@ var mStyleLeather = mongoose.model('StyleLeather', {
     leather: {type: mongoose.Schema.ObjectId, ref: 'Leather'}
 });
 
-var mStyleLeatherColor = mongoose.model('StyleLeatherColor', {
-    styleLeather: {type: mongoose.Schema.ObjectId, ref: 'StyleLeather'},
+var mStyleColor = mongoose.model('StyleColor', {
+    style: {type: mongoose.Schema.ObjectId, ref: 'Style'},
     color: {type: mongoose.Schema.ObjectId, ref: 'Color'}
 });
 
@@ -60,7 +60,7 @@ module.exports = {
     StyleSize: mStyleSize,
     StyleMaterial: mStyleMaterial,
     StyleLeather: mStyleLeather,
-    StyleLeatherColor: mStyleLeatherColor
+    StyleColor: mStyleColor
 };
 
 
