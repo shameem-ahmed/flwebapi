@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 
+//Controller reference
 var cUser = require('./controllers/user');
 var cAccess = require('./controllers/access');
 var cLov = require('./controllers/lov');
@@ -14,6 +15,7 @@ var cAddress = require('./controllers/address');
 var cSupplier = require('./controllers/supplier');
 var cCompany = require('./controllers/company');
 var cCustomer = require('./controllers/customer');
+var cStyle = require('./controllers/style');
 
 var seed = require('./seeddata');
 
@@ -113,7 +115,53 @@ app.post('/company/delete/:id', checkAuthenticated, cCompany.delete);
 app.get('/company/getall', checkAuthenticated, cCompany.getAll);
 app.get('/company/getone/:id', checkAuthenticated, cCompany.getOne);
 
+//Style
+app.post('/style/add', checkAuthenticated, cStyle.add);
+app.post('/style/update', checkAuthenticated, cStyle.update);
+app.post('/style/delete/:id', checkAuthenticated, cStyle.delete);
 
+app.post('/style/add/material', checkAuthenticated, cStyle.addStyleMaterial);
+app.post('/style/add/leather', checkAuthenticated, cStyle.addStyleLeather);
+app.post('/style/add/size', checkAuthenticated, cStyle.addStyleSize);
+
+app.post('/style/delete/material/:id', checkAuthenticated, cStyle.deleteStyleMaterial);
+app.post('/style/delete/leather/:id', checkAuthenticated, cStyle.deleteStyleLeather);
+app.post('/style/delete/size/:id', checkAuthenticated, cStyle.deleteStyleSize);
+
+app.post('/style/size/add', checkAuthenticated, cStyle.addSize);
+app.post('/style/size/update', checkAuthenticated, cStyle.updateSize);
+app.post('/style/size/delete/:id', checkAuthenticated, cStyle.deleteSize);
+
+app.post('/style/color/add', checkAuthenticated, cStyle.addColor);
+app.post('/style/color/update', checkAuthenticated, cStyle.updateColor);
+app.post('/style/color/delete/:id', checkAuthenticated, cStyle.deleteColor);
+
+app.post('/style/leather/add', checkAuthenticated, cStyle.addLeather);
+app.post('/style/leather/update', checkAuthenticated, cStyle.updateLeather);
+app.post('/style/leather/delete/:id', checkAuthenticated, cStyle.deleteLeather);
+
+app.post('/style/material/add', checkAuthenticated, cStyle.addMaterial);
+app.post('/style/material/update', checkAuthenticated, cStyle.updateMaterial);
+app.post('/style/material/delete/:id', checkAuthenticated, cStyle.deleteMaterial);
+
+app.get('/style/getall', checkAuthenticated, cStyle.getAll);
+app.get('/style/getone/:id', checkAuthenticated, cStyle.getOne);
+
+app.get('/style/material/getall/:id', checkAuthenticated, cStyle.getAllStyleMaterial);
+app.get('/style/leather/getall/:id', checkAuthenticated, cStyle.getAllStyleLeather);
+app.get('/style/size/getall/:id', checkAuthenticated, cStyle.getAllStyleSize);
+
+app.get('/style/material/getall', checkAuthenticated, cStyle.getAllMaterial);
+app.get('/style/material/getone/:id', checkAuthenticated, cStyle.getOneMaterial);
+
+app.get('/style/leather/getall', checkAuthenticated, cStyle.getAllLeather);
+app.get('/style/leather/getone/:id', checkAuthenticated, cStyle.getOneLeather);
+
+app.get('/style/color/getall', checkAuthenticated, cStyle.getAllColor);
+app.get('/style/color/getone/:id', checkAuthenticated, cStyle.getOneColor);
+
+app.get('/style/size/getall', checkAuthenticated, cStyle.getAllSize);
+app.get('/style/size/getone/:id', checkAuthenticated, cStyle.getOneSize);
 
 //Connection
 mongoose.connect("mongodb://localhost:27017/fldb", function(err, db){
