@@ -139,10 +139,6 @@ app.post('/style/material/delete/:id', checkAuthenticated, cStyle.deleteMaterial
 app.get('/style/getall', checkAuthenticated, cStyle.getAll);
 app.get('/style/getone/:id', checkAuthenticated, cStyle.getOne);
 
-app.get('/style/material/getall/:id', checkAuthenticated, cStyle.getAllStyleMaterial);
-app.get('/style/leather/getall/:id', checkAuthenticated, cStyle.getAllStyleLeather);
-app.get('/style/size/getall/:id', checkAuthenticated, cStyle.getAllStyleSize);
-
 app.get('/style/material/getall', checkAuthenticated, cStyle.getAllMaterial);
 app.get('/style/material/getone/:id', checkAuthenticated, cStyle.getOneMaterial);
 

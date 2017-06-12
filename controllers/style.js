@@ -1,8 +1,4 @@
 var Style = require('../models/style').Style;
-var StyleMaterial = require('../models/style').StyleMaterial;
-var StyleLeather = require('../models/style').StyleLeather;
-var StyleColor = require('../models/style').StyleColor;
-var StyleSize = require('../models/style').StyleSize;
 var Material = require('../models/style').Material;
 var Leather = require('../models/style').Leather;
 var Color = require('../models/style').Color;
@@ -18,8 +14,62 @@ module.exports = {
         var mStyle = {
             title: styleData.title,
             isActive: styleData.isActive,
-            flag: styleData.flag
+            flag: styleData.flag,
+            materials: [],
+            leathers: [],
+            colors: [],
+            sizes: []
         };
+
+        for(let mat of styleData.materials) {
+//            Material.findById(mat.id, function(err, data) {
+//                if (!data)
+//                    return res.status(401).send({ message: 'Material not found' });
+//
+//                mStyle.materials.push(data);
+//            });
+
+            var oSM = Material.findById(mat.id);
+            mStyle.materials.push(oSM);
+
+        }
+
+        for(let lea of styleData.leathers) {
+//            Leather.findById(lea.id, function(err, data) {
+//                if (!data)
+//                    return res.status(401).send({ message: 'Leather not found' });
+//
+//                mStyle.leathers.push(data);
+//            });
+
+            var oSL = Leather.findById(lea.id);
+            mStyle.leathers.push(oSL);
+        }
+
+        for(let col of styleData.colors) {
+//            Color.findById(col.id, function(err, data) {
+//                if (!data)
+//                    return res.status(401).send({ message: 'Color not found' });
+//
+//                mStyle.colors.push(data);
+//            });
+
+            var oSC = Color.findById(col.id);
+            mStyle.colors.push(oSC);
+
+        }
+
+        for(let siz of styleData.sizes) {
+//            Size.findById(siz.id, function(err, data) {
+//                if (!data)
+//                    return res.status(401).send({ message: 'Size not found' });
+//
+//                mStyle.sizes.push(data);
+//            });
+
+            var oSS = Size.findById(siz.id);
+            mStyle.sizes.push(oSS);
+        }
 
         var style = new Style(mStyle);
 
@@ -28,42 +78,6 @@ module.exports = {
                 res.status(500).send({
                     message: err.message
                 });
-            }
-
-            for(let mat of styleData.materials) {
-                var mStyleMat = {
-                    style: data._id,
-                    material: mat.id
-                };
-                var styleMaterial = new StyleMaterial(mStyleMat);
-                styleMaterial.save();
-            }
-
-            for(let lea of styleData.leathers) {
-                var mStyleLea = {
-                    style: data._id,
-                    leather: lea.id
-                };
-                var styleLeather = new StyleLeather(mStyleLea);
-                styleLeather.save();
-            }
-
-            for(let col of styleData.colors) {
-                var mStyleCol = {
-                    style: data._id,
-                    color: col.id
-                };
-                var styleColor = new StyleColor(mStyleCol);
-                styleColor.save();
-            }
-
-            for(let siz of styleData.sizes) {
-                var mStyleSiz = {
-                    style: data._id,
-                    size: siz.id
-                };
-                var styleSize = new StyleSize(mStyleSiz);
-                styleSize.save();
             }
 
             res.status(200).send({
@@ -343,7 +357,7 @@ module.exports = {
 
         Style.find(function (err, data) {
 
-            Style.populate(data, { path: 'materials', model: 'StyleMaterial' }, function(err, data) {
+            Style.populate(data, { path: 'materials', model: 'Material' }, function(err, data) {
 
                 res.send(data);
 
@@ -368,36 +382,6 @@ module.exports = {
 
             res.send(data);
 
-        });
-    },
-
-    getAllStyleMaterial: function (req, res) {
-        console.log('style.getAllStyleMaterial');
-
-        var styleId = req.params.id;
-
-        StyleMaterial.find({ style: styleId }).exec(function (err, data) {
-            res.send(data);
-        });
-    },
-
-    getAllStyleLeather: function (req, res) {
-        console.log('style.getAllStyleLeather');
-
-        var styleId = req.params.id;
-
-        StyleLeather.find({ style: styleId }).exec(function (err, data) {
-            res.send(data);
-        });
-    },
-
-    getAllStyleSize: function (req, res) {
-        console.log('style.getAllStyleSize');
-
-        var styleId = req.params.id;
-
-        StyleSize.find({ style: styleId }).exec(function (err, data) {
-            res.send(data);
         });
     },
 
