@@ -2,6 +2,7 @@ var Supplier = require('../models/supplier').Supplier;
 var SupplierGovtCode = require('../models/supplier').SupplierGovtCode;
 var SupplierOffice = require('../models/supplier').SupplierOffice;
 var SupplierOfficePeople = require('../models/supplier').SupplierOfficePeople;
+var Person=require('../models/user').Person;
 
 module.exports = {
 
