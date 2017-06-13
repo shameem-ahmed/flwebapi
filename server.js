@@ -120,14 +120,6 @@ app.post('/style/add', checkAuthenticated, cStyle.add);
 app.post('/style/update', checkAuthenticated, cStyle.update);
 app.post('/style/delete/:id', checkAuthenticated, cStyle.delete);
 
-app.post('/style/add/material', checkAuthenticated, cStyle.addStyleMaterial);
-app.post('/style/add/leather', checkAuthenticated, cStyle.addStyleLeather);
-app.post('/style/add/size', checkAuthenticated, cStyle.addStyleSize);
-
-app.post('/style/delete/material/:id', checkAuthenticated, cStyle.deleteStyleMaterial);
-app.post('/style/delete/leather/:id', checkAuthenticated, cStyle.deleteStyleLeather);
-app.post('/style/delete/size/:id', checkAuthenticated, cStyle.deleteStyleSize);
-
 app.post('/style/size/add', checkAuthenticated, cStyle.addSize);
 app.post('/style/size/update', checkAuthenticated, cStyle.updateSize);
 app.post('/style/size/delete/:id', checkAuthenticated, cStyle.deleteSize);
@@ -146,10 +138,6 @@ app.post('/style/material/delete/:id', checkAuthenticated, cStyle.deleteMaterial
 
 app.get('/style/getall', checkAuthenticated, cStyle.getAll);
 app.get('/style/getone/:id', checkAuthenticated, cStyle.getOne);
-
-app.get('/style/material/getall/:id', checkAuthenticated, cStyle.getAllStyleMaterial);
-app.get('/style/leather/getall/:id', checkAuthenticated, cStyle.getAllStyleLeather);
-app.get('/style/size/getall/:id', checkAuthenticated, cStyle.getAllStyleSize);
 
 app.get('/style/material/getall', checkAuthenticated, cStyle.getAllMaterial);
 app.get('/style/material/getone/:id', checkAuthenticated, cStyle.getOneMaterial);

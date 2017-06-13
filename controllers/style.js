@@ -1,8 +1,4 @@
 var Style = require('../models/style').Style;
-var StyleMaterial = require('../models/style').StyleMaterial;
-var StyleLeather = require('../models/style').StyleLeather;
-var StyleLeatherColor = require('../models/style').StyleLeatherColor;
-var StyleSize = require('../models/style').StyleSize;
 var Material = require('../models/style').Material;
 var Leather = require('../models/style').Leather;
 var Color = require('../models/style').Color;
@@ -13,7 +9,69 @@ module.exports = {
     add: function (req, res) {
         console.log('style.add');
 
-        var style = new Style(req.body);
+        var styleData = req.body;
+
+        var mStyle = {
+            title: styleData.title,
+            isActive: styleData.isActive,
+            flag: styleData.flag,
+            materials: [],
+            leathers: [],
+            colors: [],
+            sizes: []
+        };
+
+        for(let mat of styleData.materials) {
+//            Material.findById(mat.id, function(err, data) {
+//                if (!data)
+//                    return res.status(401).send({ message: 'Material not found' });
+//
+//                mStyle.materials.push(data);
+//            });
+
+            var oSM = Material.findById(mat.id);
+            mStyle.materials.push(oSM);
+
+        }
+
+        for(let lea of styleData.leathers) {
+//            Leather.findById(lea.id, function(err, data) {
+//                if (!data)
+//                    return res.status(401).send({ message: 'Leather not found' });
+//
+//                mStyle.leathers.push(data);
+//            });
+
+            var oSL = Leather.findById(lea.id);
+            mStyle.leathers.push(oSL);
+        }
+
+        for(let col of styleData.colors) {
+//            Color.findById(col.id, function(err, data) {
+//                if (!data)
+//                    return res.status(401).send({ message: 'Color not found' });
+//
+//                mStyle.colors.push(data);
+//            });
+
+            var oSC = Color.findById(col.id);
+            mStyle.colors.push(oSC);
+
+        }
+
+        for(let siz of styleData.sizes) {
+//            Size.findById(siz.id, function(err, data) {
+//                if (!data)
+//                    return res.status(401).send({ message: 'Size not found' });
+//
+//                mStyle.sizes.push(data);
+//            });
+
+            var oSS = Size.findById(siz.id);
+            mStyle.sizes.push(oSS);
+        }
+
+        var style = new Style(mStyle);
 
         style.save(function (err, data) {
             if (err) {
@@ -62,105 +120,6 @@ module.exports = {
 
             res.status(200).send({
                 message: 'Style deleted successfully.'
-            });
-        });
-    },
-
-    addStyleMaterial: function (req, res) {
-        console.log('style.addStyleMaterial');
-
-        var sm = new StyleMaterial(req.body);
-
-        sm.save(function (err, data) {
-            if (err) {
-                res.status(500).send({
-                    message: err.message
-                });
-            }
-
-            res.status(200).send({
-                code: data
-            });
-        });
-    },
-
-    deleteStyleMaterial: function(req, res) {
-        console.log('style.deleteStyleMaterial');
-
-        var id = req.params.id;
-
-        StyleMaterial.findByIdAndRemove(id, function(err) {
-            if (err)
-                return res.status(500).send({ message: err.message });
-
-            res.status(200).send({
-                message: 'StyleMaterial deleted successfully.'
-            });
-        });
-    },
-
-    addStyleLeather: function (req, res) {
-        console.log('style.addStyleLeather');
-
-        var sl = new StyleLeather(req.body);
-
-        sl.save(function (err, data) {
-            if (err) {
-                res.status(500).send({
-                    message: err.message
-                });
-            }
-
-            res.status(200).send({
-                code: data
-            });
-        });
-    },
-
-    deleteStyleLeather: function(req, res) {
-        console.log('style.deleteStyleMaterial');
-
-        var id = req.params.id;
-
-        StyleLeather.findByIdAndRemove(id, function(err) {
-            if (err)
-                return res.status(500).send({ message: err.message });
-
-            res.status(200).send({
-                message: 'StyleLeather deleted successfully.'
-            });
-        });
-    },
-
-    addStyleSize: function (req, res) {
-        console.log('style.addStyleSize');
-
-        var ss = new StyleSize(req.body);
-
-        ss.save(function (err, data) {
-            if (err) {
-                res.status(500).send({
-                    message: err.message
-                });
-            }
-
-            res.status(200).send({
-                code: data
-            });
-        });
-    },
-
-    deleteStyleSize: function(req, res) {
-        console.log('style.deleteStyleSize');
-
-        var id = req.params.id;
-
-        StyleSize.findByIdAndRemove(id, function(err) {
-            if (err)
-                return res.status(500).send({ message: err.message });
-
-            res.status(200).send({
-                message: 'StyleSize deleted successfully.'
             });
         });
     },
@@ -392,9 +351,24 @@ module.exports = {
     getAll: function (req, res) {
         console.log('style.getAll');
 
+//        Style.find(function (err, data) {
+//            res.send(data);
+//        });
+
         Style.find(function (err, data) {
-            res.send(data);
+
+            Style.populate(data, { path: 'materials', model: 'Material' }, function(err, data) {
+
+                res.send(data);
+
+            });
         });
+
+        //db.styles.aggregate([{$lookup: { from: "stylematerials", localField: "_id", foreignField: "style", as: "materials"}}])
+
+        Style.aggregate
+
+
     },
 
     getOne: function (req, res) {
@@ -408,36 +382,6 @@ module.exports = {
 
             res.send(data);
 
-        });
-    },
-
-    getAllStyleMaterial: function (req, res) {
-        console.log('style.getAllStyleMaterial');
-
-        var styleId = req.params.id;
-
-        StyleMaterial.find({ style: styleId }).exec(function (err, data) {
-            res.send(data);
-        });
-    },
-
-    getAllStyleLeather: function (req, res) {
-        console.log('style.getAllStyleLeather');
-
-        var styleId = req.params.id;
-
-        StyleLeather.find({ style: styleId }).exec(function (err, data) {
-            res.send(data);
-        });
-    },
-
-    getAllStyleSize: function (req, res) {
-        console.log('style.getAllStyleSize');
-
-        var styleId = req.params.id;
-
-        StyleSize.find({ style: styleId }).exec(function (err, data) {
-            res.send(data);
         });
     },
 
