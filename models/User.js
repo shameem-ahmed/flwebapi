@@ -36,6 +36,7 @@ var mPerson = mongoose.model('Person', {
     dateAnniversary: Date,
     maritalStatus: Number,
     gender: Number,
+    officeid:{type: mongoose.Schema.ObjectId, ref: 'office'},
     isActive: Boolean,
     flag: Number
 });
