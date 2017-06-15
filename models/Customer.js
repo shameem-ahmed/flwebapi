@@ -8,14 +8,9 @@ var mCustomer = mongoose.model('Customer', {
     phone: String,
     fax: String,
     logo: String,
+    LovGovtCode: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    GovtCode: String,
     isActive: Boolean
-});
-
-var mCustomerGovtCode = mongoose.model('CustomerGovtCode', {
-    customer: {type: mongoose.Schema.ObjectId, ref: 'Customer'},
-    value: String,
-    LovType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
-    expireDate: Date
 });
 
 var mCustomerOffice = mongoose.model('CustomerOffice', {
@@ -39,7 +34,6 @@ var mCustomerOfficePeople = mongoose.model('CustomerOfficePeople', {
 
 module.exports = {
     Customer: mCustomer,
-    CustomerGovtCode: mCustomerGovtCode,
     CustomerOffice: mCustomerOffice,
     CustomerOfficePeople: mCustomerOfficePeople
 };

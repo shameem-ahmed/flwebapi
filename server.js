@@ -84,11 +84,6 @@ app.post('/supplier/delete/:id', checkAuthenticated, cSupplier.delete);
 app.get('/supplier/getall', checkAuthenticated, cSupplier.getAll);
 app.get('/supplier/getone/:id', checkAuthenticated, cSupplier.getOne);
 
-app.post('/supplier/code/add', checkAuthenticated, cSupplier.addCode);
-app.post('/supplier/code/update', checkAuthenticated, cSupplier.updateCode);
-app.post('/supplier/code/delete/:id', checkAuthenticated, cSupplier.deleteCode);
-app.get('/supplier/code/getall/:suppId', checkAuthenticated, cSupplier.getAllCode);
-
 app.post('/supplier/office/add', checkAuthenticated, cSupplier.addOffice);
 app.post('/supplier/office/update', checkAuthenticated, cSupplier.updateOffice);
 app.post('/supplier/office/delete/:id', checkAuthenticated, cSupplier.deleteOffice);

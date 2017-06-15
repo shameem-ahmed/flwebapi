@@ -9,69 +9,7 @@ module.exports = {
     add: function (req, res) {
         console.log('style.add');
 
-        var styleData = req.body;
-
-        var mStyle = {
-            title: styleData.title,
-            isActive: styleData.isActive,
-            flag: styleData.flag,
-            materials: [],
-            leathers: [],
-            colors: [],
-            sizes: []
-        };
-
-        for(let mat of styleData.materials) {
-//            Material.findById(mat.id, function(err, data) {
-//                if (!data)
-//                    return res.status(401).send({ message: 'Material not found' });
-//
-//                mStyle.materials.push(data);
-//            });
-
-            var oSM = Material.findById(mat.id);
-            mStyle.materials.push(oSM);
-
-        }
-
-        for(let lea of styleData.leathers) {
-//            Leather.findById(lea.id, function(err, data) {
-//                if (!data)
-//                    return res.status(401).send({ message: 'Leather not found' });
-//
-//                mStyle.leathers.push(data);
-//            });
-
-            var oSL = Leather.findById(lea.id);
-            mStyle.leathers.push(oSL);
-        }
-
-        for(let col of styleData.colors) {
-//            Color.findById(col.id, function(err, data) {
-//                if (!data)
-//                    return res.status(401).send({ message: 'Color not found' });
-//
-//                mStyle.colors.push(data);
-//            });
-
-            var oSC = Color.findById(col.id);
-            mStyle.colors.push(oSC);
-
-        }
-
-        for(let siz of styleData.sizes) {
-//            Size.findById(siz.id, function(err, data) {
-//                if (!data)
-//                    return res.status(401).send({ message: 'Size not found' });
-//
-//                mStyle.sizes.push(data);
-//            });
-
-            var oSS = Size.findById(siz.id);
-            mStyle.sizes.push(oSS);
-        }
-
-        var style = new Style(mStyle);
+        var style = new Style(req.body);
 
         style.save(function (err, data) {
             if (err) {
@@ -79,6 +17,7 @@ module.exports = {
                     message: err.message
                 });
             }
+            //console.log(data);
 
             res.status(200).send({
                 style: data
@@ -351,24 +290,20 @@ module.exports = {
     getAll: function (req, res) {
         console.log('style.getAll');
 
-//        Style.find(function (err, data) {
-//            res.send(data);
-//        });
-
         Style.find(function (err, data) {
-
             Style.populate(data, { path: 'materials', model: 'Material' }, function(err, data) {
+                Style.populate(data, { path: 'leathers', model: 'Leather' }, function(err, data) {
+                    Style.populate(data, { path: 'colors', model: 'Color' }, function(err, data) {
+                        Style.populate(data, { path: 'sizes', model: 'Size' }, function(err, data) {
 
-                res.send(data);
+                            res.send(data);
 
+                        });
+                    });
+                });
             });
         });
-
         //db.styles.aggregate([{$lookup: { from: "stylematerials", localField: "_id", foreignField: "style", as: "materials"}}])
-
-        Style.aggregate
-
-
     },
 
     getOne: function (req, res) {

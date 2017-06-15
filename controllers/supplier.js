@@ -1,5 +1,4 @@
 var Supplier = require('../models/supplier').Supplier;
-var SupplierGovtCode = require('../models/supplier').SupplierGovtCode;
 var SupplierOffice = require('../models/supplier').SupplierOffice;
 var SupplierOfficePeople = require('../models/supplier').SupplierOfficePeople;
 var Person=require('../models/user').Person;
@@ -59,62 +58,6 @@ module.exports = {
 
             res.status(200).send({
                 message: 'Supplier deleted successfully.'
-            });
-        });
-    },
-
-    addCode: function (req, res) {
-        console.log('supplier.addCode');
-
-        var code = new SupplierGovtCode(req.body);
-
-        code.save(function (err, data) {
-            if (err) {
-                res.status(500).send({
-                    message: err.message
-                });
-            }
-
-            res.status(200).send({
-                code: data
-            });
-        });
-    },
-
-    updateCode: function (req, res) {
-        console.log('supplier.updateCode');
-
-        SupplierGovtCode.findById(req.body.id, function(err, data) {
-            if (!data)
-                return res.status(401).send({ message: 'SupplierGovtCode not found' });
-
-            data.value = req.body.value;
-
-            data.save(function(err, data){
-                if (err) {
-                    res.status(500).send({
-                        message: err.message
-                    });
-                }
-
-                res.status(200).send({
-                    code: data
-                });
-            });
-        });
-    },
-
-    deleteCode: function(req, res) {
-        console.log('supplier.deleteCode');
-
-        var id = req.params.id;
-
-        SupplierGovtCode.findByIdAndRemove(id, function(err) {
-            if (err)
-                return res.status(500).send({ message: err.message });
-
-            res.status(200).send({
-                message: 'SupplierGovtCode deleted successfully.'
             });
         });
     },
@@ -251,16 +194,6 @@ module.exports = {
 
             res.send(data);
 
-        });
-    },
-
-    getAllCode: function (req, res) {
-        console.log('supplier.getAllGovtCode');
-
-        var suppId = req.params.suppId;
-
-        SupplierGovtCode.find({ supplier: suppId }).populate({ path: 'LovType', model: 'Lov' }).exec(function (err, data) {
-            res.send(data);
         });
     },
 

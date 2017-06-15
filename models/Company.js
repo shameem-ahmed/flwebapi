@@ -8,14 +8,9 @@ var mCompany = mongoose.model('Company', {
     phone: String,
     fax: String,
     logo: String,
+    LovGovtCode: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    GovtCode: String,
     isActive: Boolean
-});
-
-var mCompanyGovtCode = mongoose.model('CompanyGovtCode', {
-    company: {type: mongoose.Schema.ObjectId, ref: 'Company'},
-    value: String,
-    LovType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
-    expireDate: Date
 });
 
 var mCompanyOffice = mongoose.model('CompanyOffice', {
@@ -52,7 +47,6 @@ var mCompanyOfficePeople = mongoose.model('CompanyOfficePeople', {
 
 module.exports = {
     Company: mCompany,
-    CompanyGovtCode: mCompanyGovtCode,
     CompanyOffice: mCompanyOffice,
     CompanyOfficePeople: mCompanyOfficePeople
 };
