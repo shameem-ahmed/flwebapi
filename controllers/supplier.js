@@ -204,7 +204,7 @@ module.exports = {
 
         SupplierOffice.find({ supplier: suppId }, function (err, data) {
             res.send(data);
-        })
+        });
     },
 
     getAllPerson: function (req, res) {
@@ -212,8 +212,22 @@ module.exports = {
 
         var offId = req.params.offId;
 
-        SupplierOfficePeople.find({ supplierOffice: offId }, function (err, data) {
+//        SupplierOfficePeople.find({ supplierOffice: offId }, function (err, data) {
+//            res.send(data);
+//        });
+
+        SupplierOfficePeople.find({ supplierOffice: offId }).populate({ path: 'person', model: 'Person' }).exec(function(err, data) {
+
             res.send(data);
-        })
+
+        });
+
+//        User.find().populate({ path: 'person', model: 'Person' }).populate({ path: 'address', model: 'Address' }).exec(function (err, data) {
+//
+//            if (!data)
+//                return res.status(401).send({ message: 'Users not found' });
+//
+//            res.send(data);
+//        });
     }
 }
