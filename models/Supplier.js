@@ -17,7 +17,6 @@ var mSupplier = mongoose.model('Supplier', {
 var mSupplierOffice = mongoose.model('SupplierOffice', {
     supplier: {type: mongoose.Schema.ObjectId, ref: 'Supplier'},
     title: String,
-    
     address: {type: mongoose.Schema.ObjectId, ref: 'Address'},
     email: String,
     phone: String,

@@ -15,6 +15,7 @@ var mCompany = mongoose.model('Company', {
 
 var mCompanyOffice = mongoose.model('CompanyOffice', {
     company: {type: mongoose.Schema.ObjectId, ref: 'Company'},
+    title: String,
     address: {type: mongoose.Schema.ObjectId, ref: 'Address'},
     email: String,
     phone: String,
@@ -30,7 +31,7 @@ var mCompanyOfficePeople = mongoose.model('CompanyOfficePeople', {
     isAdmin: Boolean,
     LovDesignation: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     LovDepartment: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
-    LovContactType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    LovContractType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     employeeId: String,
     user: {type: mongoose.Schema.ObjectId, ref: 'User'},
     employeeId: String,
