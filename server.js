@@ -16,6 +16,7 @@ var cSupplier = require('./controllers/supplier');
 var cCompany = require('./controllers/company');
 var cCustomer = require('./controllers/customer');
 var cStyle = require('./controllers/style');
+var cPO = require('./controllers/purchaseOrder');
 
 var seed = require('./seeddata');
 
@@ -93,6 +94,37 @@ app.post('/supplier/person/add', checkAuthenticated, cSupplier.addPerson);
 app.post('/supplier/person/update', checkAuthenticated, cSupplier.updatePerson);
 app.post('/supplier/person/delete/:id', checkAuthenticated, cSupplier.deletePerson);
 app.get('/supplier/person/getall/:offId', checkAuthenticated, cSupplier.getAllPerson);
+
+//Purchase Order
+app.post('/po/add', checkAuthenticated, cPO.add);
+app.post('/po/update', checkAuthenticated, cPO.update);
+app.post('/po/delete/:id', checkAuthenticated, cPO.delete);
+app.get('/po/getall', checkAuthenticated, cPO.getAll);
+app.get('/po/getone/:id', checkAuthenticated, cPO.getOne);
+
+app.post('/po/style/add', checkAuthenticated, cPO.addStyle);
+app.post('/po/style/update', checkAuthenticated, cPO.updateStyle);
+app.post('/po/style/delete/:id', checkAuthenticated, cPO.deleteStyle);
+app.get('/po/style/getall', checkAuthenticated, cPO.getAllStyle);
+app.get('/po/style/getone/:id', checkAuthenticated, cPO.getOneStyle);
+
+app.post('/po/size/add', checkAuthenticated, cPO.addSize);
+app.post('/po/size/update', checkAuthenticated, cPO.updateSize);
+app.post('/po/size/delete/:id', checkAuthenticated, cPO.deleteSize);
+app.get('/po/size/getall', checkAuthenticated, cPO.getAllSize);
+app.get('/po/size/getone/:id', checkAuthenticated, cPO.getOneSize);
+
+app.post('/po/internal/add', checkAuthenticated, cPO.addInternal);
+app.post('/po/internal/update', checkAuthenticated, cPO.updateInternal);
+app.post('/po/internal/delete/:id', checkAuthenticated, cPO.deleteInternal);
+app.get('/po/internal/getall', checkAuthenticated, cPO.getAllInternal);
+app.get('/po/internal/getone/:id', checkAuthenticated, cPO.getOneInternal);
+
+app.post('/po/material/add', checkAuthenticated, cPO.addMaterial);
+app.post('/po/material/update', checkAuthenticated, cPO.updateMaterial);
+app.post('/po/material/delete/:id', checkAuthenticated, cPO.deleteMaterial);
+app.get('/po/material/getall', checkAuthenticated, cPO.getAllMaterial);
+app.get('/po/material/getone/:id', checkAuthenticated, cPO.getOneMaterial);
 
 //Customer
 app.post('/customer/add', checkAuthenticated, cCustomer.add);

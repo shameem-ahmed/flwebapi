@@ -1,5 +1,5 @@
-var PO = require('../models/purchaseOrder').purchaseOrder;
-var POStyle = require('../models/purchaseOrder').purchaseOrderStyle;
+var PO = require('../models/purchaseOrder').PurchaseOrder;
+var POStyle = require('../models/purchaseOrder').PurchaseOrderStyle;
 var POStyleSize = require('../models/purchaseOrder').PurchaseOrderStyleSize;
 var POInternal = require('../models/purchaseOrder').PurchaseOrderInternalDetails;
 var POMaterial = require('../models/purchaseOrder').purchaseOrderMaterial;
@@ -322,6 +322,20 @@ module.exports = {
         });
     },
 
+    getOneStyle: function (req, res) {
+        console.log('po.getOneStyle');
+
+        var id = req.params.id;
+
+        POStyle.findById(id, function(err, data) {
+            if (!data)
+                return res.status(401).send({ message: 'POStyle not found' });
+
+            res.send(data);
+
+        });
+    },
+
     getAllSize: function (req, res) {
         console.log('po.getAllSize');
 
@@ -329,6 +343,20 @@ module.exports = {
 
         POStyleSize.find({ purchaseOrderStyle: id }, function (err, data) {
             res.send(data);
+        });
+    },
+
+    getOneSize: function (req, res) {
+        console.log('po.getOneSize');
+
+        var id = req.params.id;
+
+        POStyleSize.findById(id, function(err, data) {
+            if (!data)
+                return res.status(401).send({ message: 'POStyleSize not found' });
+
+            res.send(data);
+
         });
     },
 
@@ -342,7 +370,21 @@ module.exports = {
         });
     },
 
-     getAllMaterial: function (req, res) {
+    getOneInternal: function (req, res) {
+        console.log('po.getOneInternal');
+
+        var id = req.params.id;
+
+        POInternal.findById(id, function(err, data) {
+            if (!data)
+                return res.status(401).send({ message: 'POInternal not found' });
+
+            res.send(data);
+
+        });
+    },
+
+    getAllMaterial: function (req, res) {
         console.log('po.getAllMaterial');
 
         var id = req.params.id;
@@ -351,5 +393,19 @@ module.exports = {
             res.send(data);
         });
     },
+
+    getOneMaterial: function (req, res) {
+        console.log('po.getOneMaterial');
+
+        var id = req.params.id;
+
+        POMaterial.findById(id, function(err, data) {
+            if (!data)
+                return res.status(401).send({ message: 'POMaterial not found' });
+
+            res.send(data);
+
+        });
+    }
 
 }
