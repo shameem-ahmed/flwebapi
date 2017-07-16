@@ -98,14 +98,21 @@ app.get('/supplier/person/getall/:offId', checkAuthenticated, cSupplier.getAllPe
 app.post('/customer/add', checkAuthenticated, cCustomer.add);
 app.post('/customer/update', checkAuthenticated, cCustomer.update);
 app.post('/customer/delete/:id', checkAuthenticated, cCustomer.delete);
-
 app.get('/customer/getall', checkAuthenticated, cCustomer.getAll);
 app.get('/customer/getone/:id', checkAuthenticated, cCustomer.getOne);
 
-//Company
-app.get('/company/getall', checkAuthenticated, cCompany.getAll);
-app.get('/company/getone/:id', checkAuthenticated, cCompany.getOne);
+app.post('/customer/office/add', checkAuthenticated, cCustomer.addOffice);
+app.post('/customer/office/update', checkAuthenticated, cCustomer.updateOffice);
+app.post('/customer/office/delete/:id', checkAuthenticated, cCustomer.deleteOffice);
+app.get('/customer/office/getall/:cusId', checkAuthenticated, cCustomer.getAllOffice);
 
+app.post('/customer/person/add', checkAuthenticated, cCustomer.addPerson);
+app.post('/customer/person/update', checkAuthenticated, cCustomer.updatePerson);
+app.post('/customer/person/delete/:id', checkAuthenticated, cCustomer.deletePerson);
+app.get('/customer/person/getall/:offId', checkAuthenticated, cCustomer.getAllPerson);
+
+
+//Company
 app.post('/company/add', checkAuthenticated, cCompany.add);
 app.post('/company/update', checkAuthenticated, cCompany.update);
 app.post('/company/delete/:id', checkAuthenticated, cCompany.delete);

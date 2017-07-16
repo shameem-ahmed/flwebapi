@@ -232,8 +232,7 @@ module.exports = {
         //            res.send(data);
         //        });
 
-        SupplierOfficePeople.find({
-            supplierOffice: offId
+        SupplierOfficePeople.find({ supplierOffice: offId
         }).populate({
             path: 'person',
             model: 'Person'
