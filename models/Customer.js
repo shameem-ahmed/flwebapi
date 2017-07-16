@@ -15,10 +15,12 @@ var mCustomer = mongoose.model('Customer', {
 
 var mCustomerOffice = mongoose.model('CustomerOffice', {
     company: {type: mongoose.Schema.ObjectId, ref: 'Customer'},
+    title: String,
     address: {type: mongoose.Schema.ObjectId, ref: 'Address'},
     email: String,
     phone: String,
     fax: String,
+    flag: Number,
     isActive: Boolean
 });
 

@@ -1,7 +1,7 @@
 var Company = require('../models/company').Company;
 var CompanyOffice = require('../models/company').CompanyOffice;
 var CompanyOfficePeople = require('../models/company').CompanyOfficePeople;
-var Person=require('../models/user').Person;
+var Person = require('../models/user').Person;
 
 module.exports = {
 
@@ -26,14 +26,16 @@ module.exports = {
     update: function (req, res) {
         console.log('company.update');
 
-        Company.findById(req.body.id, function(err, data) {
+        Company.findById(req.body.id, function (err, data) {
             if (!data)
-                return res.status(401).send({ message: 'Company not found' });
+                return res.status(401).send({
+                    message: 'Company not found'
+                });
 
             data.name = req.body.name;
             data.code = req.body.code;
 
-            data.save(function(err, data){
+            data.save(function (err, data) {
                 if (err) {
                     res.status(500).send({
                         message: err.message
@@ -47,14 +49,16 @@ module.exports = {
         });
     },
 
-    delete: function(req, res) {
+    delete: function (req, res) {
         console.log('company.delete');
 
         var id = req.params.id;
 
-        Company.findByIdAndRemove(id, function(err) {
+        Company.findByIdAndRemove(id, function (err) {
             if (err)
-                return res.status(500).send({ message: err.message });
+                return res.status(500).send({
+                    message: err.message
+                });
 
             res.status(200).send({
                 message: 'Company deleted successfully.'
@@ -83,14 +87,16 @@ module.exports = {
     updateOffice: function (req, res) {
         console.log('company.updateOffice');
 
-        CompanyOffice.findById(req.body.id, function(err, data) {
+        CompanyOffice.findById(req.body.id, function (err, data) {
             if (!data)
-                return res.status(401).send({ message: 'CompanyOffice not found' });
+                return res.status(401).send({
+                    message: 'CompanyOffice not found'
+                });
 
             data.title = req.body.title;
             data.email = req.body.email;
 
-            data.save(function(err, data){
+            data.save(function (err, data) {
                 if (err) {
                     res.status(500).send({
                         message: err.message
@@ -104,14 +110,16 @@ module.exports = {
         });
     },
 
-    deleteOffice: function(req, res) {
+    deleteOffice: function (req, res) {
         console.log('company.deleteOffice');
 
         var id = req.params.id;
 
-        CompanyOffice.findByIdAndRemove(id, function(err) {
+        CompanyOffice.findByIdAndRemove(id, function (err) {
             if (err)
-                return res.status(500).send({ message: err.message });
+                return res.status(500).send({
+                    message: err.message
+                });
 
             res.status(200).send({
                 message: 'CompanyOffice deleted successfully.'
@@ -140,13 +148,15 @@ module.exports = {
     updatePerson: function (req, res) {
         console.log('company.updatePerson');
 
-        CompanyOfficePeople.findById(req.body.id, function(err, data) {
+        CompanyOfficePeople.findById(req.body.id, function (err, data) {
             if (!data)
-                return res.status(401).send({ message: 'CompanyOfficePeople not found' });
+                return res.status(401).send({
+                    message: 'CompanyOfficePeople not found'
+                });
 
             data.name = req.body.name;
 
-            data.save(function(err, data){
+            data.save(function (err, data) {
                 if (err) {
                     res.status(500).send({
                         message: err.message
@@ -160,14 +170,16 @@ module.exports = {
         });
     },
 
-    deletePerson: function(req, res) {
+    deletePerson: function (req, res) {
         console.log('company.deletePerson');
 
         var id = req.params.id;
 
-        CompanyOfficePeople.findByIdAndRemove(id, function(err) {
+        CompanyOfficePeople.findByIdAndRemove(id, function (err) {
             if (err)
-                return res.status(500).send({ message: err.message });
+                return res.status(500).send({
+                    message: err.message
+                });
 
             res.status(200).send({
                 message: 'CompanyOfficePeople deleted successfully.'
@@ -188,9 +200,11 @@ module.exports = {
 
         var id = req.params.id;
 
-        Company.findById(id, function(err, data) {
+        Company.findById(id, function (err, data) {
             if (!data)
-                return res.status(401).send({ message: 'Company not found' });
+                return res.status(401).send({
+                    message: 'Company not found'
+                });
 
             res.send(data);
 
@@ -202,7 +216,9 @@ module.exports = {
 
         var compId = req.params.compId;
 
-        CompanyOffice.find({ company: compId }, function (err, data) {
+        CompanyOffice.find({
+            company: compId
+        }, function (err, data) {
             res.send(data);
         })
     },
@@ -211,9 +227,22 @@ module.exports = {
         console.log('company.getAllPerson');
 
         var offId = req.params.offId;
+      console.log("Mahesh");
 
-        CompanyOfficePeople.find({ companyOffice: offId }, function (err, data) {
+        CompanyOfficePeople.find({
+            companyOffice: offId
+        }).populate({
+            path: 'person',
+            model: 'Person'
+        }).populate({
+            path: 'LovDesignation',
+            model: 'Lov'
+        }).exec(function (err, data) {
+            console.log(data);
             res.send(data);
-        })
+
+        });
+
+
     }
 }
