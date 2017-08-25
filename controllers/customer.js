@@ -215,7 +215,7 @@ module.exports = {
         var cusId = req.params.cusId;
 
         CustomerOffice.find({
-            company: cusId
+            customer: cusId
         }, function (err, data) {
             res.send(data);
         });
@@ -227,7 +227,7 @@ module.exports = {
         var offId = req.params.offId;
 
         CustomerOfficePeople.find({
-            companyOffice: offId
+            customerOffice: offId
         }).populate({
             path: 'person',
             model: 'Person'
