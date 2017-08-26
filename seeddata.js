@@ -27,6 +27,7 @@ module.exports.seedData = function() {
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'COMP', accessCode: '111111111' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'LOVL', accessCode: '111111111' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'USER', accessCode: '111111111' }).save();
+                dUserAccess = new mUserAccess({ user:data._id, pageCode: 'GLOC', accessCode: '111111111' }).save();
 
             });
 
@@ -43,6 +44,7 @@ module.exports.seedData = function() {
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'COMP', accessCode: '111110111' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'LOVL', accessCode: '111110111' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'USER', accessCode: '111110111' }).save();
+                dUserAccess = new mUserAccess({ user:data._id, pageCode: 'GLOC', accessCode: '111110111' }).save();
 
             });
 
@@ -59,6 +61,7 @@ module.exports.seedData = function() {
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'COMP', accessCode: '111000000' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'LOVL', accessCode: '111000000' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'USER', accessCode: '111000000' }).save();
+                dUserAccess = new mUserAccess({ user:data._id, pageCode: 'GLOC', accessCode: '111000000' }).save();
 
             });
 
@@ -74,6 +77,8 @@ module.exports.seedData = function() {
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'SUPP', accessCode: '111100000' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'COMP', accessCode: '111100000' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'LOVL', accessCode: '111100000' }).save();
+                dUserAccess = new mUserAccess({ user:data._id, pageCode: 'GLOC', accessCode: '111100000' }).save();
+
 
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'USER', accessCode: '111100000' }).save(function(err, data){
                     console.log("Seed User & UserAccess data: completed...");

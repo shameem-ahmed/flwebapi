@@ -174,7 +174,8 @@ module.exports = {
                 aAccess.push({ pageCode: "COMP", pageId: "liPageCompany", pageTitle: "Company", pageIcon: "fa fa-building", pageFile: "/home/company", pageIndex: 8, access: "111111111" });
                 aAccess.push({ pageCode: "SUPP", pageId: "liPageSupplier", pageTitle: "Supplier", pageIcon: "fa fa-user", pageFile: "/home/supplier", pageIndex: 9, access: "111111111" });
                 aAccess.push({ pageCode: "LOVL", pageId: "liPageLOV", pageTitle: "LOV", pageIcon: "fa fa-caret-square-o-down", pageFile: "/home/lov", pageIndex: 10, access: "111111111" });
-                aAccess.push({ pageCode: "USER", pageId: "liPageUser", pageTitle: "Users", pageIcon: "fa fa-user", pageFile: "/home/user", pageIndex: 11, access: "111111111" });
+                aAccess.push({ pageCode: "GLOC", pageId: "liPageLoc", pageTitle: "Locations", pageIcon: "fa fa-caret-square-o-down", pageFile: "/home/gloc", pageIndex: 11, access: "111111111" });
+                aAccess.push({ pageCode: "USER", pageId: "liPageUser", pageTitle: "Users", pageIcon: "fa fa-user", pageFile: "/home/user", pageIndex: 12, access: "111111111" });
 
                 res.send(aAccess);
 
@@ -261,7 +262,7 @@ module.exports = {
                                 pageTitle = "LOV";
                                 pageId = "liPageLOV";
                                 pageIcon = "fa fa-caret-square-o-down";
-                                pageFile = "/home/loc";
+                                pageFile = "/home/lov";
                                 pageIndex = 10;
 
                             }
@@ -278,6 +279,14 @@ module.exports = {
                                 pageId = "liPageSupplier";
                                 pageIcon = "fa fa-user";
                                 pageFile = "/home/supplier";
+                                pageIndex = 9;
+
+                            }
+                            else if (item.pageCode == "GLOC") {
+                                pageTitle = "Location";
+                                pageId = "liPageLoc";
+                                pageIcon = "fa fa-caret-square-o-down";
+                                pageFile = "/home/gloc";
                                 pageIndex = 9;
 
                             }

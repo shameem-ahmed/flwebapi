@@ -122,6 +122,9 @@ module.exports = {
     addPerson: function (req, res) {
         console.log('supplier.addPerson');
 
+        console.log(req.body);
+
+
         var person = new SupplierOfficePeople(req.body);
 
         person.save(function (err, data) {
@@ -212,8 +215,26 @@ module.exports = {
 
         var offId = req.params.offId;
 
-        SupplierOfficePeople.find({ supplierOffice: offId }, function (err, data) {
-            res.send(data);
-        })
+//        SupplierOfficePeople.find({ supplierOffice: offId }, function (err, data) {
+//            res.send(data);
+//        });
+
+        SupplierOfficePeople.find({ supplierOffice: offId })
+            .populate({ path: 'person', model: 'Person' })
+            .populate({ path: 'LovDesignation', model: 'Lov' })
+            .populate({ path: 'LovDepartment', model: 'Lov' })
+            .exec(function (err, data) {
+
+        if (!data)
+            return res.status(401).send({ message: 'Person not found' });
+
+
+        console.log(data);
+
+        res.send(data);
+        });
+
+
+
     }
 }

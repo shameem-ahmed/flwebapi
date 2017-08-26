@@ -14,7 +14,7 @@ var mCustomer = mongoose.model('Customer', {
 });
 
 var mCustomerOffice = mongoose.model('CustomerOffice', {
-    company: {type: mongoose.Schema.ObjectId, ref: 'Customer'},
+    customer: {type: mongoose.Schema.ObjectId, ref: 'Customer'},
     address: {type: mongoose.Schema.ObjectId, ref: 'Address'},
     email: String,
     phone: String,
@@ -23,7 +23,7 @@ var mCustomerOffice = mongoose.model('CustomerOffice', {
 });
 
 var mCustomerOfficePeople = mongoose.model('CustomerOfficePeople', {
-    companyOffice: {type: mongoose.Schema.ObjectId, ref: 'CustomerOffice'},
+    customerOffice: {type: mongoose.Schema.ObjectId, ref: 'CustomerOffice'},
     person: {type: mongoose.Schema.ObjectId, ref: 'Person'},
     isPrimary: Boolean,
     isManager: Boolean,

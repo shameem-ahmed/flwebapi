@@ -58,7 +58,8 @@ var mGeoLoc = mongoose.model('GeoLoc', {
     flag: Number
 });
 
-//type = 0-Desig, 1-Dept, 2-OfficeType, 3-GovtCode, 4-UserType, 5-OrderType, 6-OrderStatus, 7-POInternalDetailType, 8-JCStatus, 9-ContactType, 10-PersonGovtNo
+//type = 0-Desig, 1-Dept, 2-OfficeType, 3-GovtCode, 4-UserType, 5-OrderType,
+//6-OrderStatus,  7-POInternalDetailType, 8-JCStatus, 9-ContractType, 10-PersonGovtNo
 var mLov = mongoose.model('Lov', {
     title: String,
     type: Number,
