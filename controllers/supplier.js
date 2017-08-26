@@ -231,11 +231,6 @@ module.exports = {
 
         var offId = req.params.offId;
 
-<<<<<<< HEAD
-//        SupplierOfficePeople.find({ supplierOffice: offId }, function (err, data) {
-//            res.send(data);
-//        });
-
         SupplierOfficePeople.find({ supplierOffice: offId })
             .populate({ path: 'person', model: 'Person' })
             .populate({ path: 'LovDesignation', model: 'Lov' })
@@ -250,34 +245,5 @@ module.exports = {
 
         res.send(data);
         });
-
-
-
-=======
-        //        SupplierOfficePeople.find({ supplierOffice: offId }, function (err, data) {
-        //            res.send(data);
-        //        });
-
-        SupplierOfficePeople.find({ supplierOffice: offId
-        }).populate({
-            path: 'person',
-            model: 'Person'
-        }).populate({
-            path: 'LovDesignation',
-            model: 'Lov'
-        }).exec(function (err, data) {
-
-            res.send(data);
-
-        });
-
-        //        User.find().populate({ path: 'person', model: 'Person' }).populate({ path: 'address', model: 'Address' }).exec(function (err, data) {
-        //
-        //            if (!data)
-        //                return res.status(401).send({ message: 'Users not found' });
-        //
-        //            res.send(data);
-        //        });
->>>>>>> flwebapi/master
     }
 }
