@@ -315,7 +315,19 @@ module.exports = {
             if (!data)
                 return res.status(401).send({ message: 'Style not found' });
 
-            res.send(data);
+                Style.populate(data, { path: 'materials', model: 'Material' }, function(err, data) {
+                    Style.populate(data, { path: 'leathers', model: 'Leather' }, function(err, data) {
+                        Style.populate(data, { path: 'colors', model: 'Color' }, function(err, data) {
+                            Style.populate(data, { path: 'sizes', model: 'Size' }, function(err, data) {
+
+                                res.send(data);
+
+                            });
+                        });
+                    });
+                });
+
+            //res.send(data);
 
         });
     },
