@@ -26,14 +26,16 @@ module.exports = {
     update: function (req, res) {
         console.log('customer.update');
 
-        Customer.findById(req.body.id, function(err, data) {
+        Customer.findById(req.body.id, function (err, data) {
             if (!data)
-                return res.status(401).send({ message: 'Customer not found' });
+                return res.status(401).send({
+                    message: 'Customer not found'
+                });
 
             data.name = req.body.name;
             data.code = req.body.code;
 
-            data.save(function(err, data){
+            data.save(function (err, data) {
                 if (err) {
                     res.status(500).send({
                         message: err.message
@@ -47,14 +49,16 @@ module.exports = {
         });
     },
 
-    delete: function(req, res) {
+    delete: function (req, res) {
         console.log('customer.delete');
 
         var id = req.params.id;
 
-        Customer.findByIdAndRemove(id, function(err) {
+        Customer.findByIdAndRemove(id, function (err) {
             if (err)
-                return res.status(500).send({ message: err.message });
+                return res.status(500).send({
+                    message: err.message
+                });
 
             res.status(200).send({
                 message: 'Customer deleted successfully.'
@@ -63,7 +67,11 @@ module.exports = {
     },
 
     addOffice: function (req, res) {
+<<<<<<< HEAD
         console.log('customer.addOffice');
+=======
+        console.log('Customer.addOffice');
+>>>>>>> flwebapi/master
 
         var office = new CustomerOffice(req.body);
 
@@ -81,16 +89,30 @@ module.exports = {
     },
 
     updateOffice: function (req, res) {
+<<<<<<< HEAD
         console.log('customer.updateOffice');
 
         CustomerOffice.findById(req.body.id, function(err, data) {
             if (!data)
                 return res.status(401).send({ message: 'CustomerOffice not found' });
+=======
+        console.log('Customer.updateOffice');
+
+        CustomerOffice.findById(req.body.id, function (err, data) {
+            if (!data)
+                return res.status(401).send({
+                    message: 'CustomerOffice not found'
+                });
+>>>>>>> flwebapi/master
 
             data.title = req.body.title;
             data.email = req.body.email;
 
+<<<<<<< HEAD
             data.save(function(err, data){
+=======
+            data.save(function (err, data) {
+>>>>>>> flwebapi/master
                 if (err) {
                     res.status(500).send({
                         message: err.message
@@ -104,6 +126,7 @@ module.exports = {
         });
     },
 
+<<<<<<< HEAD
     deleteOffice: function(req, res) {
         console.log('customer.deleteOffice');
 
@@ -115,6 +138,21 @@ module.exports = {
 
             res.status(200).send({
                 message: 'CustomerOffice deleted successfully.'
+=======
+    deleteOffice: function (req, res) {
+        console.log('supplier.deleteOffice');
+
+        var id = req.params.id;
+
+        CustomerOffice.findByIdAndRemove(id, function (err) {
+            if (err)
+                return res.status(500).send({
+                    message: err.message
+                });
+
+            res.status(200).send({
+                message: 'SupplierOffice deleted successfully.'
+>>>>>>> flwebapi/master
             });
         });
     },
@@ -140,6 +178,7 @@ module.exports = {
     updatePerson: function (req, res) {
         console.log('customer.updatePerson');
 
+<<<<<<< HEAD
         CustomerOfficePeople.findById(req.body.id, function(err, data) {
             if (!data)
                 return res.status(401).send({ message: 'CustomerOfficePeople not found' });
@@ -147,6 +186,17 @@ module.exports = {
             data.name = req.body.name;
 
             data.save(function(err, data){
+=======
+        CustomerOfficePeople.findById(req.body.id, function (err, data) {
+            if (!data)
+                return res.status(401).send({
+                    message: 'CustomerOfficePeople not found'
+                });
+
+            data.name = req.body.name;
+
+            data.save(function (err, data) {
+>>>>>>> flwebapi/master
                 if (err) {
                     res.status(500).send({
                         message: err.message
@@ -160,21 +210,36 @@ module.exports = {
         });
     },
 
+<<<<<<< HEAD
     deletePerson: function(req, res) {
+=======
+    deletePerson: function (req, res) {
+>>>>>>> flwebapi/master
         console.log('customer.deletePerson');
 
         var id = req.params.id;
 
+<<<<<<< HEAD
         CustomerOfficePeople.findByIdAndRemove(id, function(err) {
             if (err)
                 return res.status(500).send({ message: err.message });
+=======
+        CustomerOfficePeople.findByIdAndRemove(id, function (err) {
+            if (err)
+                return res.status(500).send({
+                    message: err.message
+                });
+>>>>>>> flwebapi/master
 
             res.status(200).send({
                 message: 'CustomerOfficePeople deleted successfully.'
             });
         });
     },
+<<<<<<< HEAD
 
+=======
+>>>>>>> flwebapi/master
     getAll: function (req, res) {
         console.log('customer.getAll');
 
@@ -188,9 +253,11 @@ module.exports = {
 
         var id = req.params.id;
 
-        Customer.findById(id, function(err, data) {
+        Customer.findById(id, function (err, data) {
             if (!data)
-                return res.status(401).send({ message: 'Customer not found' });
+                return res.status(401).send({
+                    message: 'Customer not found'
+                });
 
             res.send(data);
 
@@ -198,6 +265,7 @@ module.exports = {
     },
 
     getAllOffice: function (req, res) {
+<<<<<<< HEAD
         console.log('customer.getAllOffice');
 
         var compId = req.params.compId;
@@ -215,5 +283,48 @@ module.exports = {
         CustomerOfficePeople.find({ customerOffice: offId }, function (err, data) {
             res.send(data);
         })
+=======
+        console.log('Customer.getAllOffice');
+
+        var cusId = req.params.cusId;
+
+        CustomerOffice.find({
+            company: cusId
+        }, function (err, data) {
+            res.send(data);
+        });
+    },
+
+    getAllPerson: function (req, res) {
+        console.log('Customer.getAllPerson');
+
+        var offId = req.params.offId;
+
+        //        SupplierOfficePeople.find({ supplierOffice: offId }, function (err, data) {
+        //            res.send(data);
+        //        });
+
+        CustomerOfficePeople.find({
+            companyOffice: offId
+        }).populate({
+            path: 'person',
+            model: 'Person'
+        }).populate({
+            path: 'LovDesignation',
+            model: 'Lov'
+        }).exec(function (err, data) {
+            console.log(data);
+            res.send(data);
+
+        });
+
+        //        User.find().populate({ path: 'person', model: 'Person' }).populate({ path: 'address', model: 'Address' }).exec(function (err, data) {
+        //
+        //            if (!data)
+        //                return res.status(401).send({ message: 'Users not found' });
+        //
+        //            res.send(data);
+        //        });
+>>>>>>> flwebapi/master
     }
 }

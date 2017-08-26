@@ -14,11 +14,17 @@ var mCustomer = mongoose.model('Customer', {
 });
 
 var mCustomerOffice = mongoose.model('CustomerOffice', {
+<<<<<<< HEAD
     customer: {type: mongoose.Schema.ObjectId, ref: 'Customer'},
+=======
+    company: {type: mongoose.Schema.ObjectId, ref: 'Customer'},
+    title: String,
+>>>>>>> flwebapi/master
     address: {type: mongoose.Schema.ObjectId, ref: 'Address'},
     email: String,
     phone: String,
     fax: String,
+    flag: Number,
     isActive: Boolean
 });
 
