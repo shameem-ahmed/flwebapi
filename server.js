@@ -139,21 +139,13 @@ app.get('/customer/getone/:id', checkAuthenticated, cCustomer.getOne);
 app.post('/customer/office/add', checkAuthenticated, cCustomer.addOffice);
 app.post('/customer/office/update', checkAuthenticated, cCustomer.updateOffice);
 app.post('/customer/office/delete/:id', checkAuthenticated, cCustomer.deleteOffice);
-<<<<<<< HEAD
 app.get('/customer/office/getall/:compId', checkAuthenticated, cCustomer.getAllOffice);
-=======
 app.get('/customer/office/getall/:cusId', checkAuthenticated, cCustomer.getAllOffice);
->>>>>>> flwebapi/master
-
 app.post('/customer/person/add', checkAuthenticated, cCustomer.addPerson);
 app.post('/customer/person/update', checkAuthenticated, cCustomer.updatePerson);
 app.post('/customer/person/delete/:id', checkAuthenticated, cCustomer.deletePerson);
 app.get('/customer/person/getall/:offId', checkAuthenticated, cCustomer.getAllPerson);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> flwebapi/master
 //Company
 app.get('/company/getall', checkAuthenticated, cCompany.getAll);
 app.get('/company/getone/:id', checkAuthenticated, cCompany.getOne);

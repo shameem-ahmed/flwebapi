@@ -1,11 +1,7 @@
 var Company = require('../models/company').Company;
 var CompanyOffice = require('../models/company').CompanyOffice;
 var CompanyOfficePeople = require('../models/company').CompanyOfficePeople;
-<<<<<<< HEAD
-var Person=require('../models/user').Person;
-=======
 var Person = require('../models/user').Person;
->>>>>>> flwebapi/master
 
 module.exports = {
 
@@ -91,26 +87,16 @@ module.exports = {
     updateOffice: function (req, res) {
         console.log('company.updateOffice');
 
-<<<<<<< HEAD
-        CompanyOffice.findById(req.body.id, function(err, data) {
-            if (!data)
-                return res.status(401).send({ message: 'CompanyOffice not found' });
-=======
         CompanyOffice.findById(req.body.id, function (err, data) {
             if (!data)
                 return res.status(401).send({
                     message: 'CompanyOffice not found'
                 });
->>>>>>> flwebapi/master
 
             data.title = req.body.title;
             data.email = req.body.email;
 
-<<<<<<< HEAD
-            data.save(function(err, data){
-=======
             data.save(function (err, data) {
->>>>>>> flwebapi/master
                 if (err) {
                     res.status(500).send({
                         message: err.message
@@ -124,27 +110,16 @@ module.exports = {
         });
     },
 
-<<<<<<< HEAD
-    deleteOffice: function(req, res) {
-=======
     deleteOffice: function (req, res) {
->>>>>>> flwebapi/master
         console.log('company.deleteOffice');
 
         var id = req.params.id;
 
-<<<<<<< HEAD
-        CompanyOffice.findByIdAndRemove(id, function(err) {
-            if (err)
-                return res.status(500).send({ message: err.message });
-=======
         CompanyOffice.findByIdAndRemove(id, function (err) {
             if (err)
                 return res.status(500).send({
                     message: err.message
                 });
->>>>>>> flwebapi/master
-
             res.status(200).send({
                 message: 'CompanyOffice deleted successfully.'
             });
@@ -172,15 +147,6 @@ module.exports = {
     updatePerson: function (req, res) {
         console.log('company.updatePerson');
 
-<<<<<<< HEAD
-        CompanyOfficePeople.findById(req.body.id, function(err, data) {
-            if (!data)
-                return res.status(401).send({ message: 'CompanyOfficePeople not found' });
-
-            data.name = req.body.name;
-
-            data.save(function(err, data){
-=======
         CompanyOfficePeople.findById(req.body.id, function (err, data) {
             if (!data)
                 return res.status(401).send({
@@ -190,7 +156,6 @@ module.exports = {
             data.name = req.body.name;
 
             data.save(function (err, data) {
->>>>>>> flwebapi/master
                 if (err) {
                     res.status(500).send({
                         message: err.message
@@ -204,26 +169,16 @@ module.exports = {
         });
     },
 
-<<<<<<< HEAD
-    deletePerson: function(req, res) {
-=======
     deletePerson: function (req, res) {
->>>>>>> flwebapi/master
         console.log('company.deletePerson');
 
         var id = req.params.id;
 
-<<<<<<< HEAD
-        CompanyOfficePeople.findByIdAndRemove(id, function(err) {
-            if (err)
-                return res.status(500).send({ message: err.message });
-=======
         CompanyOfficePeople.findByIdAndRemove(id, function (err) {
             if (err)
                 return res.status(500).send({
                     message: err.message
                 });
->>>>>>> flwebapi/master
 
             res.status(200).send({
                 message: 'CompanyOfficePeople deleted successfully.'
@@ -260,13 +215,9 @@ module.exports = {
 
         var compId = req.params.compId;
 
-<<<<<<< HEAD
-        CompanyOffice.find({ company: compId }, function (err, data) {
-=======
         CompanyOffice.find({
             company: compId
         }, function (err, data) {
->>>>>>> flwebapi/master
             res.send(data);
         })
     },
@@ -275,13 +226,6 @@ module.exports = {
         console.log('company.getAllPerson');
 
         var offId = req.params.offId;
-<<<<<<< HEAD
-
-        CompanyOfficePeople.find({ companyOffice: offId }, function (err, data) {
-            res.send(data);
-        })
-=======
-      console.log("Mahesh");
 
         CompanyOfficePeople.find({
             companyOffice: offId
@@ -296,8 +240,5 @@ module.exports = {
             res.send(data);
 
         });
-
-
->>>>>>> flwebapi/master
     }
 }
