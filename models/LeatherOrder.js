@@ -26,7 +26,7 @@ var mLeatherOrderReceive = mongoose.model('LeatherOrderReceive', {
     deliveredBy: {type: mongoose.Schema.ObjectId, ref: 'SupplierOfficePerson'},
     dateReceive: Date,
     qty: Number,
-    isFullORder: Boolean
+    isFullOrder: Boolean
 });
 
 module.exports = {

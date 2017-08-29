@@ -8,7 +8,7 @@ var mPurchaseOrder = mongoose.model('PurchaseOrder', {
     dateTarget: Date,
     dateDelivery: Date,
     shippingAddress: {type: mongoose.Schema.ObjectId, ref: 'Address'},
-    LovStatus: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
+    LovStatus: Number,
     LovType: {type: mongoose.Schema.ObjectId, ref: 'Lov'}
 });
 
@@ -20,14 +20,12 @@ var mPurchaseOrderStyle = mongoose.model('PurchaseOrderStyle', {
 
 var mPurchaseOrderStyleSize = mongoose.model('PurchaseOrderStyleSize', {
     purchaseOrderStyle: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrderStyle'},
-    styleSize: {type: mongoose.Schema.ObjectId, ref: 'StyleSize'},
+    styleSize: {type: mongoose.Schema.ObjectId, ref: 'Size'},
     qty: Number
 });
 
 var mPurchaseOrderInternalDetails = mongoose.model('PurchaseOrderInternalDetails', {
     purchaseOrder: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrder'},
-    purchaseOrderStyle: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrderStyle'},
-    purchaseOrderStyleSize: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrderStyleSize'},
     LovDetailType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
     notes: String,
     priority: Number
