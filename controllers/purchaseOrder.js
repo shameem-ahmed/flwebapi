@@ -9,7 +9,19 @@ module.exports = {
     add: function (req, res) {
         console.log('po.add');
 
-        var po = new PO(req.body);
+
+        var po2 = {
+            customer: req.body.customer,
+            invoiceNo: req.body.invoiceNo,
+            qty: req.body.qty,
+            dateOrder: req.body.dateOrder,
+            dateTarget: req.body.dateTarget,
+            dateDelivery: req.body.dateDelivery,
+            LovStatus: 0,
+            LovType: req.body.orderType
+        };
+
+        var po = new PO(po2);
 
         po.save(function (err, data) {
             if (err) {
@@ -293,8 +305,34 @@ module.exports = {
     getAll: function (req, res) {
         console.log('po.getAll');
 
-        PO.find(function (err, data) {
+        PO.find().populate({ path: 'customer', model: 'Customer' })
+            .populate({ path: 'LovType', model: 'Lov' })
+            .exec(function(err, data){
+
+            if (!data)
+                return res.status(401).send({ message: 'POs not found' });
+
             res.send(data);
+        });
+
+    },
+
+    uploadPO(req, res) {
+
+        if (!req.files) {
+            console.log('po.uploadPO: No files were uploaded.');
+            return res.status(400).send("No files were uploaded.");
+        }
+
+        var fileName = req.params.id + ".pdf";
+
+        let pdf1 = req.files.pdf1;
+
+        pdf1.mv("C:\FUELLS\Files\PO\" + filename, function(err){
+            if (err) {
+                console.log('po.uploadPO: Err saving file.');
+                return res.status(500).send(err);
+            }
         });
     },
 

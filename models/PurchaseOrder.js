@@ -24,6 +24,13 @@ var mPurchaseOrderStyleSize = mongoose.model('PurchaseOrderStyleSize', {
     qty: Number
 });
 
+var mPurchaseOrderMaterial = mongoose.model('PurchaseOrderMaterial', {
+    purchaseOrder: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrder'},
+    styleMaterial: {type: mongoose.Schema.ObjectId, ref: 'StyleMaterial'},
+    qty: Number,
+    notes: String
+});
+
 var mPurchaseOrderInternalDetails = mongoose.model('PurchaseOrderInternalDetails', {
     purchaseOrder: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrder'},
     LovDetailType: {type: mongoose.Schema.ObjectId, ref: 'Lov'},
@@ -31,13 +38,6 @@ var mPurchaseOrderInternalDetails = mongoose.model('PurchaseOrderInternalDetails
     priority: Number
 });
 //priotity = 0-High, 1-Normal, 2-Low
-
-var mPurchaseOrderMaterial = mongoose.model('PurchaseOrderMaterial', {
-    purchaseOrder: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrder'},
-    styleMaterial: {type: mongoose.Schema.ObjectId, ref: 'StyleMaterial'},
-    qty: Number,
-    notes: String
-});
 
 module.exports = {
     PurchaseOrder: mPurchaseOrder,
