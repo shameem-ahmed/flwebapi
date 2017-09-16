@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
 
+var fileUpload = require('express-fileupload');
+
 var app = express();
 
 //Controller reference
@@ -28,6 +30,7 @@ seed.seedData();
 //Middlewares
 app.use(bodyParser.json()); //bodyParser for JSON POSTs
 app.use(cors); //custom middleware for CORS
+app.use(fileUpload()); //express-fileupload middleware
 
 //REQUESTS
 
@@ -105,25 +108,25 @@ app.get('/po/getone/:id', checkAuthenticated, cPO.getOne);
 app.post('/po/style/add', checkAuthenticated, cPO.addStyle);
 app.post('/po/style/update', checkAuthenticated, cPO.updateStyle);
 app.post('/po/style/delete/:id', checkAuthenticated, cPO.deleteStyle);
-app.get('/po/style/getall', checkAuthenticated, cPO.getAllStyle);
+app.get('/po/style/getall/:id', checkAuthenticated, cPO.getAllStyle);
 app.get('/po/style/getone/:id', checkAuthenticated, cPO.getOneStyle);
 
 app.post('/po/size/add', checkAuthenticated, cPO.addSize);
 app.post('/po/size/update', checkAuthenticated, cPO.updateSize);
 app.post('/po/size/delete/:id', checkAuthenticated, cPO.deleteSize);
-app.get('/po/size/getall', checkAuthenticated, cPO.getAllSize);
+app.get('/po/size/getall/:id', checkAuthenticated, cPO.getAllSize);
 app.get('/po/size/getone/:id', checkAuthenticated, cPO.getOneSize);
 
 app.post('/po/internal/add', checkAuthenticated, cPO.addInternal);
 app.post('/po/internal/update', checkAuthenticated, cPO.updateInternal);
 app.post('/po/internal/delete/:id', checkAuthenticated, cPO.deleteInternal);
-app.get('/po/internal/getall', checkAuthenticated, cPO.getAllInternal);
+app.get('/po/internal/getall/:id', checkAuthenticated, cPO.getAllInternal);
 app.get('/po/internal/getone/:id', checkAuthenticated, cPO.getOneInternal);
 
 app.post('/po/material/add', checkAuthenticated, cPO.addMaterial);
 app.post('/po/material/update', checkAuthenticated, cPO.updateMaterial);
 app.post('/po/material/delete/:id', checkAuthenticated, cPO.deleteMaterial);
-app.get('/po/material/getall', checkAuthenticated, cPO.getAllMaterial);
+app.get('/po/material/getall/:id', checkAuthenticated, cPO.getAllMaterial);
 app.get('/po/material/getone/:id', checkAuthenticated, cPO.getOneMaterial);
 
 app.post('/po/upload/:id', checkAuthenticated, cPO.uploadPO);
