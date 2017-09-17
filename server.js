@@ -129,7 +129,7 @@ app.post('/po/material/delete/:id', checkAuthenticated, cPO.deleteMaterial);
 app.get('/po/material/getall/:id', checkAuthenticated, cPO.getAllMaterial);
 app.get('/po/material/getone/:id', checkAuthenticated, cPO.getOneMaterial);
 
-app.post('/po/upload/:id', checkAuthenticated, cPO.uploadPO);
+app.post('/po/upload/:id', cPO.uploadPO);
 
 //Customer
 app.get('/customer/getall', checkAuthenticated, cCustomer.getAll);

@@ -381,9 +381,10 @@ module.exports = {
     },
 
     uploadPO(req, res) {
+        console.log('po.uploadPO');
 
         if (!req.files) {
-            console.log('po.uploadPO: No files were uploaded.');
+            console.log('po.uploadPO - No files were uploaded.');
             return res.status(400).send("No files were uploaded.");
         }
 
@@ -391,11 +392,15 @@ module.exports = {
 
         let pdf1 = req.files.pdf1;
 
-        pdf1.mv("C:/FUELLS/Files/PO/" + filename, function(err){
+        pdf1.mv("C:/FUELLS/Files/PO/" + fileName, function(err){
             if (err) {
-                console.log('po.uploadPO: Err saving file.');
+                console.log('po.uploadPO - Err saving file.');
                 return res.status(500).send(err);
             }
+
+            console.log('po.uploadPO - completed');
+
+
         });
     },
 
