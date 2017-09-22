@@ -471,10 +471,6 @@ module.exports = {
 
         var id = req.params.id;
 
-      /*  POStyleSize.find({ purchaseOrderStyle: id }, function (err, data) {
-            res.send(data);
-        });*/
-
         POStyleSize.find({ purchaseOrderStyle: id }).populate({ path: 'styleSize', model: 'Size' })
             .exec(function(err, data){
 

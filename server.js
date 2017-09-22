@@ -19,6 +19,7 @@ var cCompany = require('./controllers/company');
 var cCustomer = require('./controllers/customer');
 var cStyle = require('./controllers/style');
 var cPO = require('./controllers/purchaseOrder');
+var cJC = require('./controllers/jobCard');
 
 var seed = require('./seeddata');
 
@@ -130,6 +131,10 @@ app.get('/po/material/getall/:id', checkAuthenticated, cPO.getAllMaterial);
 app.get('/po/material/getone/:id', checkAuthenticated, cPO.getOneMaterial);
 
 app.post('/po/upload/:id', cPO.uploadPO);
+
+//Job Card
+app.post('/jc/generate/:id', checkAuthenticated, cJC.generate);
+app.get('/jc/getall/:id', checkAuthenticated, cJC.getAll);
 
 //Customer
 app.get('/customer/getall', checkAuthenticated, cCustomer.getAll);

@@ -3,6 +3,52 @@ var mongoose = require('mongoose');
 var mJobCard = mongoose.model('JobCard', {
     jobCardNo: String,
     purchaseOrder: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrder'},
+    purchaseOrderStyle: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrderStyle'},
+    purchaseOrderSize: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrderStyleSize'},
+    status: Number,
+    dateStart: Date,
+    dateEnd: Date,
+    cuttingDone: Boolean,
+    cuttingDate: Date,
+    cuttingMatcher: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    cuttingCutter: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    cuttingFuser: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    cuttingRemarks: String,
+    liningDone: Boolean,
+    liningDate: Date,
+    liningCutter: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    liningRemarks: String,
+    storeDone: Boolean,
+    storeDate: Date,
+    storeIssuedBy: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    storeReceivedBy: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    storeRemarks: String,
+    tailoringDone: Boolean,
+    tailoringDate: Date,
+    tailoringTailor: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    tailoringLineQc: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    tailoringStatus: String,
+    tailoringRemarks: String,
+    inspectionDone: Boolean,
+    inspectionDate: Date,
+    inspectionQcBy: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    inspectionStatus: String,
+    inspectionRemarks: String,
+    packingDone: Boolean,
+    packingDate: Date,
+    packingBy: {type: mongoose.Schema.ObjectId, ref: 'User'},
+    packingStatus: String,
+    packingRemarks: String
+});
+
+module.exports = {
+    JobCard: mJobCard
+};
+
+/*
+var mJobCard = mongoose.model('JobCard', {
+    jobCardNo: String,
+    purchaseOrder: {type: mongoose.Schema.ObjectId, ref: 'PurchaseOrder'},
     style: {type: mongoose.Schema.ObjectId, ref: 'Style'},
     color: {type: mongoose.Schema.ObjectId, ref: 'Color'},
     size: {type: mongoose.Schema.ObjectId, ref: 'Size'},
@@ -89,4 +135,7 @@ module.exports = {
     JobCardStore: mJobCardStore,
     JobCardTailoring: mJobCardTailoring
 };
+*/
+
+
 
