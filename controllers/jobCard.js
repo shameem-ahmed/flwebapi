@@ -37,7 +37,7 @@ module.exports = {
 
                                 //save jc
                                 var jc2 = {
-                                    jobCardNo: poData[0].invoiceNo + '_' + jcNo,
+                                    jobCardNo: poData[0].invoiceNo + '.' + jcNo,
                                     purchaseOrder: poData[0]._id,
                                     purchaseOrderStyle: poStyle._id,
                                     purchaseOrderSize: poSize._id,
