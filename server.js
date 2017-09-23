@@ -135,6 +135,9 @@ app.post('/po/upload/:id', cPO.uploadPO);
 //Job Card
 app.post('/jc/generate/:id', checkAuthenticated, cJC.generate);
 app.get('/jc/getall/:id', checkAuthenticated, cJC.getAll);
+app.get('/jc/getpostyle/:id', checkAuthenticated, cJC.getAllPOStyle);
+app.get('/jc/getposize/:id', checkAuthenticated, cJC.getAllPOSize);
+
 
 //Customer
 app.get('/customer/getall', checkAuthenticated, cCustomer.getAll);

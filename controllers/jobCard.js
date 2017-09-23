@@ -103,7 +103,7 @@ module.exports = {
     },
 
     getAll: function (req, res) {
-        console.log('po.getAll');
+        console.log('jc.getAll');
 
         var id = req.params.id;
 
@@ -120,7 +120,7 @@ module.exports = {
     },
 
     getOne: function (req, res) {
-        console.log('po.getOne');
+        console.log('jc.getOne');
 
         var id = req.params.id;
 
@@ -134,5 +134,39 @@ module.exports = {
 
             res.send(data);
         });
-    }
+    },
+
+    getAllPOStyle: function (req, res) {
+        console.log('jc.getAllPOStyle');
+
+        var id = req.params.id;
+
+        JC.find({purchaseOrderStyle: id})
+            .populate({ path: 'purchaseOrderStyle', populate: { path: 'style' }})
+            .populate({ path: 'purchaseOrderSize', populate: { path: 'styleSize' }})
+            .exec(function(err, data){
+
+            if (!data)
+                return res.status(401).send({ message: 'JCs not found' });
+
+            res.send(data);
+        });
+    },
+
+    getAllPOSize: function (req, res) {
+        console.log('jc.getAllPOSize');
+
+        var id = req.params.id;
+
+        JC.find({purchaseOrderSize: id})
+            .populate({ path: 'purchaseOrderStyle', populate: { path: 'style' }})
+            .populate({ path: 'purchaseOrderSize', populate: { path: 'styleSize' }})
+            .exec(function(err, data){
+
+            if (!data)
+                return res.status(401).send({ message: 'JCs not found' });
+
+            res.send(data);
+        });
+    },
 }
