@@ -105,6 +105,20 @@ module.exports = {
         });
     },
 
+    getAllDept: function (req, res) {
+        console.log('user.getAllDept');
+        var dept = req.params.dept;
+
+
+        User.find({ dept: dept }).populate({ path: 'person', model: 'Person' }).populate({ path: 'address', model: 'Address' }).exec(function (err, data) {
+
+            if (!data)
+                return res.status(401).send({ message: 'Dept Users not found' });
+
+            res.send(data);
+        });
+    },
+
     getOne: function (req, res) {
         console.log('user.getOne');
         var id = req.params.id;

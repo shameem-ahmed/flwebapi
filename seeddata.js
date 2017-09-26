@@ -24,9 +24,9 @@ module.exports.seedData = function() {
         if (data.length === 0) {
             console.log("Seed User & UserAccess data...")
 
-            var dUser1 = new mUser({ name:"admin", pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:true }).save();
+            var dUser1 = new mUser({ name:"admin", fullName:"Shameem Ahmed", dept:0, pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:true }).save();
 
-            var dUser2 = new mUser({ name:"manager", pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:false }).save(function(err, data) {
+            var dUser2 = new mUser({ name:"manager", fullName:"Shameem Ahmed", dept:0, pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:false }).save(function(err, data) {
 
                 var dUserAccess = new mUserAccess({ user:data._id, pageCode: 'DASH', accessCode: '111111111' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'POOR', accessCode: '000000000' }).save();
@@ -43,7 +43,7 @@ module.exports.seedData = function() {
 
             });
 
-            var dUser3 = new mUser({ name:"user", pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:false }).save(function(err, data) {
+            var dUser3 = new mUser({ name:"user", fullName:"Shameem Ahmed", dept:0, pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:false }).save(function(err, data) {
 
                 var dUserAccess = new mUserAccess({ user:data._id, pageCode: 'DASH', accessCode: '111111111' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'POOR', accessCode: '000000000' }).save();
@@ -60,7 +60,7 @@ module.exports.seedData = function() {
 
             });
 
-            var dUser4 = new mUser({ name:"readuser", pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:false }).save(function(err, data) {
+            var dUser4 = new mUser({ name:"readuser", fullName:"Shameem Ahmed", dept:0, pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:false }).save(function(err, data) {
 
                 var dUserAccess = new mUserAccess({ user:data._id, pageCode: 'DASH', accessCode: '111000000' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'POOR', accessCode: '111000000' }).save();
@@ -77,7 +77,7 @@ module.exports.seedData = function() {
 
             });
 
-            var dUser5 = new mUser({ name:"adduser", pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:false }).save(function(err, data) {
+            var dUser5 = new mUser({ name:"adduser", fullName:"Shameem Ahmed", dept:0, pwd:"P@ssw0rd", person: null, dateExpiry:"31-Dec-2050", isActive:true, flag:0, isAdmin:false }).save(function(err, data) {
 
                 var dUserAccess = new mUserAccess({ user:data._id, pageCode: 'DASH', accessCode: '111100000' }).save();
                 dUserAccess = new mUserAccess({ user:data._id, pageCode: 'POOR', accessCode: '111100000' }).save();

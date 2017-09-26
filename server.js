@@ -37,6 +37,7 @@ app.use(fileUpload()); //express-fileupload middleware
 
 //User
 app.get('/user/getall', checkAuthenticated, cUser.getAll);
+app.get('/user/getall/:dept', checkAuthenticated, cUser.getAllDept);
 app.get('/user/getone/:id', checkAuthenticated, cUser.getOne);
 app.get('/user/getlogin', checkAuthenticated, cUser.getLogin);
 app.get('/user/getaccess', checkAuthenticated, cUser.getAccess);
