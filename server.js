@@ -130,15 +130,15 @@ app.post('/po/material/update', checkAuthenticated, cPO.updateMaterial);
 app.post('/po/material/delete/:id', checkAuthenticated, cPO.deleteMaterial);
 app.get('/po/material/getall/:id', checkAuthenticated, cPO.getAllMaterial);
 app.get('/po/material/getone/:id', checkAuthenticated, cPO.getOneMaterial);
-
 app.post('/po/upload/:id', cPO.uploadPO);
 
 //Job Card
 app.post('/jc/generate/:id', checkAuthenticated, cJC.generate);
 app.get('/jc/getall/:id', checkAuthenticated, cJC.getAll);
+app.get('/jc/getone/:id', checkAuthenticated, cJC.getOne);
 app.get('/jc/getpostyle/:id', checkAuthenticated, cJC.getAllPOStyle);
 app.get('/jc/getposize/:id', checkAuthenticated, cJC.getAllPOSize);
-
+app.post('/jc/update/cutting', checkAuthenticated, cJC.updateCutting);
 
 //Customer
 app.get('/customer/getall', checkAuthenticated, cCustomer.getAll);

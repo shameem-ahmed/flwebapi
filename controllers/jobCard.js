@@ -1,3 +1,5 @@
+//var async       = require("async");
+
 var PO          = require('../models/purchaseOrder').PurchaseOrder;
 var POStyle     = require('../models/purchaseOrder').PurchaseOrderStyle;
 var POStyleSize = require('../models/purchaseOrder').PurchaseOrderStyleSize;
@@ -17,27 +19,26 @@ module.exports = {
 
             var jcNo = 1;
 
-            POStyle.find({ purchaseOrder: poData[0]._id }).exec(function(err, poStyleData){
+            POStyle.find({ purchaseOrder: poData[0]._id }).exec(function(err, poStyleData) {
 
                 if (!poStyleData)
                     return res.status(401).send({ message: 'PO Styles not found' });
 
                 poStyleData.forEach(function(poStyle, index) {
-
-                    POStyleSize.find({ purchaseOrderStyle: poStyle._id }).exec(function(err, poSizeData){
+                    POStyleSize.find({ purchaseOrderStyle: poStyle._id }).exec(function(err, poSizeData) {
 
                         if (!poSizeData)
                             return res.status(401).send({ message: 'PO Style Sizes not found' });
 
                         poSizeData.forEach(function(poSize, index) {
 
-                            var i = 0;
-
-                            for(i = 0; i < poSize.qty; i++) {
+                            for(k=0; k<poSize.qty; k++) {
+                                var jcNo2 = "0000" + jcNo;
+                                jcNo2 = jcNo2.substr(jcNo2.length-5);
 
                                 //save jc
                                 var jc2 = {
-                                    jobCardNo: poData[0].invoiceNo + '.' + jcNo,
+                                    jobCardNo: poData[0].invoiceNo + '.' + jcNo2,
                                     purchaseOrder: poData[0]._id,
                                     purchaseOrderStyle: poStyle._id,
                                     purchaseOrderSize: poSize._id,
@@ -82,23 +83,19 @@ module.exports = {
                                 jc.save();
 
                                 jcNo++;
+
                             }
                         });
                     });
                 });
+
+                setTimeout(function () {
+
+                    return res.status(200).send({ message: 'job cards generated successfully.' });
+
+                }, 5000);
+
             });
-
-            JC.find({purchaseOrder: id})
-                .populate({ path: 'purchaseOrderStyle', populate: { path: 'style' }})
-                .populate({ path: 'purchaseOrderSize', populate: { path: 'styleSize' }})
-                .exec(function(err, data){
-
-                if (!data)
-                    return res.status(401).send({ message: 'JCs not found' });
-
-                res.send(data);
-            });
-
         });
     },
 
@@ -107,7 +104,7 @@ module.exports = {
 
         var id = req.params.id;
 
-        JC.find({purchaseOrder: id})
+        JC.find({purchaseOrder: id}).sort({jobCardNo: 1})
             .populate({ path: 'purchaseOrderStyle', populate: { path: 'style' }})
             .populate({ path: 'purchaseOrderSize', populate: { path: 'styleSize' }})
             .exec(function(err, data){
@@ -124,13 +121,13 @@ module.exports = {
 
         var id = req.params.id;
 
-        PO.find({_id: id}).populate({ path: 'customer', model: 'Customer' })
-            .populate({ path: 'LovType', model: 'Lov' })
-            .populate({ path: 'shippingAddress', model: 'Address' })
+        JC.find({_id: id})
+            .populate({ path: 'purchaseOrderStyle', populate: { path: 'style' }})
+            .populate({ path: 'purchaseOrderSize', populate: { path: 'styleSize' }})
             .exec(function(err, data){
 
             if (!data)
-                return res.status(401).send({ message: 'PO not found' });
+                return res.status(401).send({ message: 'JC not found' });
 
             res.send(data);
         });
@@ -169,4 +166,33 @@ module.exports = {
             res.send(data);
         });
     },
+
+    updateCutting: function (req, res) {
+        console.log('jc.updateCutting');
+
+        var newData = {
+            cuttingDone: req.body.cuttingDone,
+            cuttingDate: req.body.cuttingDate,
+            cuttingMatcher: req.body.cuttingMatcher,
+            cuttingCutter: req.body.cuttingCutter,
+            cuttingFuser: req.body.cuttingFuser,
+            cuttingRemarks: req.body.cuttingRemarks
+        }
+
+
+        console.log(newData);
+
+
+        JC.findOneAndUpdate({ _id: req.body.id }, newData, false, function(err, doc) {
+
+            if (err)
+                return res.status(401).send({ message: 'JC Cutting update failed!' });
+
+
+            return res.status(200).send({ message: 'JC Cutting updated successfully.' });
+
+        });
+
+
+    }
 }

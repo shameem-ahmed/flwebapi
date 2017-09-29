@@ -165,7 +165,7 @@ module.exports.seedData = function() {
 
                 var dCompany = new mCompany({ code:"F1", name:"FUELLS", urlWeb:"www.fuells.com", email:"info@fuells.com", phone:"", fax:"", logo:"", LovGovtCode: data._id, GovtCode: "CST001", isActive: true }).save();
 
-                var dSupplier = new mSupplier({ code:"S1", name:"Mirza Intl", urlWeb:"www.mirza.com", email:"info@mirza.com", phone:"", fax:"", logo:"", LovGovtCode: data._id, GovtCode: "CST002", isActive: true }).save();
+                var dSupplier = new mSupplier({ code:"S1", name:"Intl", urlWeb:"www.mirza.com", email:"info@mirza.com", phone:"", fax:"", logo:"", LovGovtCode: data._id, GovtCode: "CST002", isActive: true }).save();
 
                 var dCustomer = new mCustomer({ code:"C1", name:"Nintendo", urlWeb:"www.nintendo.com", email:"info@nintendo.com", phone:"", fax:"", logo:"", LovGovtCode: data._id, GovtCode: "CST003", isActive: true }).save();
             });

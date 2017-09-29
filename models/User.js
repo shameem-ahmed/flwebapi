@@ -1,8 +1,11 @@
 var mongoose = require('mongoose');
 //flag = 0-none, 1-red, 2-orange, 3-green, 4-blue, 5-black, 6-yellow
 
+//dept: 0-none, 1-cutting, 2-lining, 3-store, 4-tailoring, 5-inspection, 6-packing
 var mUser = mongoose.model('User', {
     name: String,
+    fullName: String,
+    dept: Number,
     pwd: String,
     person: {type: mongoose.Schema.ObjectId, ref: 'Person'},
     dateExpiry: Date,
