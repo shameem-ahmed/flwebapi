@@ -178,21 +178,119 @@ module.exports = {
             cuttingFuser: req.body.cuttingFuser,
             cuttingRemarks: req.body.cuttingRemarks
         }
-
-
         console.log(newData);
-
 
         JC.findOneAndUpdate({ _id: req.body.id }, newData, false, function(err, doc) {
 
             if (err)
                 return res.status(401).send({ message: 'JC Cutting update failed!' });
 
-
             return res.status(200).send({ message: 'JC Cutting updated successfully.' });
-
         });
+    },
 
+    updateLining: function (req, res) {
+        console.log('jc.updateLining');
 
+        var newData = {
+            liningDone: req.body.liningDone,
+            liningDate: req.body.liningDate,
+            liningCutter: req.body.liningCutter,
+            liningRemarks: req.body.liningRemarks
+        }
+        console.log(newData);
+
+        JC.findOneAndUpdate({ _id: req.body.id }, newData, false, function(err, doc) {
+
+            if (err)
+                return res.status(401).send({ message: 'JC Lining update failed!' });
+
+            return res.status(200).send({ message: 'JC Lining updated successfully.' });
+        });
+    },
+
+    updateStore: function (req, res) {
+        console.log('jc.updateStore');
+
+        var newData = {
+            storeDone: req.body.storeDone,
+            storeDate: req.body.storeDate,
+            storeIssuedBy: req.body.storeIssuedBy,
+            storeReceivedBy: req.body.storeReceivedBy,
+            storeRemarks: req.body.storeRemarks
+        }
+        console.log(newData);
+
+        JC.findOneAndUpdate({ _id: req.body.id }, newData, false, function(err, doc) {
+
+            if (err)
+                return res.status(401).send({ message: 'JC Store update failed!' });
+
+            return res.status(200).send({ message: 'JC Store updated successfully.' });
+        });
+    },
+
+    updateTailoring: function (req, res) {
+        console.log('jc.updateTailoring');
+
+        var newData = {
+            tailoringDone: req.body.tailoringDone,
+            tailoringDate: req.body.tailoringDate,
+            tailoringTailor: req.body.tailoringTailor,
+            tailoringLineQc: req.body.tailoringQc,
+            tailoringStatus: req.body.tailoringStatus,
+            tailoringRemarks: req.body.tailoringRemarks
+        }
+        console.log(newData);
+
+        JC.findOneAndUpdate({ _id: req.body.id }, newData, false, function(err, doc) {
+
+            if (err)
+                return res.status(401).send({ message: 'JC Tailoring update failed!' });
+
+            return res.status(200).send({ message: 'JC Tailoring updated successfully.' });
+        });
+    },
+
+    updateInspection: function (req, res) {
+        console.log('jc.updateInspection');
+
+        var newData = {
+            inspectionDone: req.body.inspectionDone,
+            inspectionDate: req.body.inspectionDate,
+            inspectionQcBy: req.body.inspectionQc,
+            inspectionStatus: req.body.inspectionStatus,
+            inspectionRemarks: req.body.inspectionRemarks
+        }
+        console.log(newData);
+
+        JC.findOneAndUpdate({ _id: req.body.id }, newData, false, function(err, doc) {
+
+            if (err)
+                return res.status(401).send({ message: 'JC Inspection update failed!' });
+
+            return res.status(200).send({ message: 'JC Inspection updated successfully.' });
+        });
+    },
+
+    updatePacking: function (req, res) {
+        console.log('jc.updatePacking');
+
+        var newData = {
+            packingDone: req.body.packingDone,
+            packingDate: req.body.packingDate,
+            packingBy: req.body.packingBy,
+            packingStatus: req.body.packingStatus,
+            packingRemarks: req.body.packingRemarks
+        }
+        console.log(newData);
+
+        JC.findOneAndUpdate({ _id: req.body.id }, newData, false, function(err, doc) {
+
+            if (err)
+                return res.status(401).send({ message: 'JC Packing update failed!' });
+
+            return res.status(200).send({ message: 'JC Packing updated successfully.' });
+        });
     }
 }

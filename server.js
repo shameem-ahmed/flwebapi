@@ -139,6 +139,11 @@ app.get('/jc/getone/:id', checkAuthenticated, cJC.getOne);
 app.get('/jc/getpostyle/:id', checkAuthenticated, cJC.getAllPOStyle);
 app.get('/jc/getposize/:id', checkAuthenticated, cJC.getAllPOSize);
 app.post('/jc/update/cutting', checkAuthenticated, cJC.updateCutting);
+app.post('/jc/update/lining', checkAuthenticated, cJC.updateLining);
+app.post('/jc/update/store', checkAuthenticated, cJC.updateStore);
+app.post('/jc/update/tailoring', checkAuthenticated, cJC.updateTailoring);
+app.post('/jc/update/inspection', checkAuthenticated, cJC.updateInspection);
+app.post('/jc/update/packing', checkAuthenticated, cJC.updatePacking);
 
 //Customer
 app.get('/customer/getall', checkAuthenticated, cCustomer.getAll);
